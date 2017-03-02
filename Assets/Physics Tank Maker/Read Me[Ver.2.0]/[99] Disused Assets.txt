@@ -1,0 +1,24 @@
+"Disused Assets"
+
+When you imported a new update into the old version project, there are many disused files in your project folder.
+If you don't need the old Assets, you may delete the following files and folders.
+
+
+*** from "Version 1.8" to "Version 1.9" ***
+"GUI_Text" (prefab)
+
+*** from "Version 1.7" to "Version 1.8" ***
+"Recoil_Generator_CS" (script)
+
+
+*** from "Version 1.7" to "Version 1.8" ***
+"Recoil_Generator_CS" (script)
+
+
+*** from "Version 1.6" to "Version 1.7" ***
+"Create_TrackBelt_Finishing_CS" (script)
+
+
+*** from "Version 1.5" to "Version 1.6" ***
+JavaScript files are no longer supported since Ver1.6.
+"Auto_ID_Assign_CS" (script)

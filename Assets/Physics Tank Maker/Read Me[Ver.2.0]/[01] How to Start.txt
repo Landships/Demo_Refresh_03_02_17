@@ -1,0 +1,54 @@
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+"How to start"
+
+Please feel free to contact me if you have any questions.
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+
+
+*** How to start playing***
+(1) Create a new project, and import this package from Asset Store.
+    Window >> AssetStore >> Import this package from 'Download Manager'.
+    
+(2) Open the Sample Scene.
+    File >> Open Scene >> 'Physics Tank Maker' >> 'Sample_Scene' >> "###.unity".
+    You can also open the scene file double-clicking it in the Project browser.
+
+(3) It's ready to play.
+    Click the "Play" button.
+
+
+*** Modify the 'Input Manager' ***
+You can also use 'Xbox360 controller' by customizing the "Input Manager" settings.
+Please modify the "Input Manager" settings in the following ways.
+
+(Notice.)
+In order to copy and paste the files, use your File Browser such as 'Explorer' and 'Finder'.
+    
+(1) Unzip and Copy the setting file.
+    You can find a ZIP-file named "InputManager.zip" in the 'ReadMe[Ver.##]' folder.
+    'Your project name' >> 'Assets' >> 'Physics_Tank_Maker'  >> 'ReadMe[Ver.##]'
+    Unzip the "InputManager.zip" and copy the "InputManager.asset".
+   
+
+(2) Paste the "InputManager.asset" into the 'ProjectSettings' folder.
+    'Your project name' >> 'ProjectSettings'
+    You can find the current "InputManager.asset" in the 'ProjectSettings' folder.
+    Paste the new "InputManager.asset" and overwrite it.
+   
+
+
+(3) Confirm that the "Input Manager" has been updated.
+    Edit >> Project Settings >> Input
+    If it was successful, you can find new Axes "Horizontal2", "Vertical2", "L_Button", "R_Button", "L_Trigger", "R_Trigger" in the Inspector window.
+   
+
+When you need more information about "Input Manager", refer to the Unity manual.
+http://docs.unity3d.com/Manual/class-InputManager.html
+
+(Notice.)
+The setting file is set for "Xbox 360 controller".
+For using other gamepad, you might have to modify the "Input Manager" settings yourself.
+

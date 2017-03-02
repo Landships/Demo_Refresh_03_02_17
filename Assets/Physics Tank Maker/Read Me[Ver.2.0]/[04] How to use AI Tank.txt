@@ -1,0 +1,51 @@
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+
+"How to use AI Tank"
+
+Please feel free to contact me if you have any questions.
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+
+
+(Warning.)
+This AI system requires Navigation Meshes (NavMesh) in the scene.
+When the NavMesh has not been baked for the scene, you will get errors in PlayMode.
+In sample scenes, the NavMeshes are already prepared.
+
+You can find finished AI tank prefabs in the "Resources" >> "Sample_Tank_##" >> "AI_##" folder.
+
+
+(1) Drag and drop the prefab into the Hierarchy window.
+   
+(2) Select the top object of the tank in the Hierarchy window.
+
+(3) Choose the "Tank ID" differing from other tanks in the Inspector window.
+   
+    (Notice.) You can skip this step.
+
+(4) Choose the "Relationship".
+    Choose the relationship with other tanks.
+   
+
+(5) Set the "WayPoint Pack" fitting for the scene.
+   
+   
+    Drag and drop the "WayPoint Pack" fitting for the scene.
+    (Notice.)
+    When the WayPoint Pack is not assigned, the AI tank tries to stay in its initial position.
+    
+    'WayPoint Pack' has some child gameobjects as waypoints.
+   
+
+(6) Select the top object of the tank, and adjust the position as you will.
+   
+
+(7) Now you are ready to play.
+    (Notice.) You can modify the AI settings much more.
+    Please also read the reference text "Top object of the tank" and "AI_System".
+
+
+
+

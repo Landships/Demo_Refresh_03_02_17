@@ -1,0 +1,226 @@
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+"How to operate"
+
+Please feel free to contact me if you have any questions.
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+
+
+[ Mouse + KeyBoard ( Default ) ]
+[ Speed Up / Down / Stop ]
+    "W" / "S" / "X"
+
+[ Turn ]
+    "Q" / "E" (Gentle Turn)
+    "A" / "D" (Brake Turn)
+    "Z" / "C" (Pivot Turn)
+
+[ Camera Rotation ]
+    "Right Mouse Drag"
+
+[ Camera Zoom ]
+    "Right Mouse Button" + "Mouse Wheel"
+
+[ Lock-On / Release ]
+    "Middle Mouse Button" / "Left Shift"
+
+[ Fire ]
+    "Left Mouse Button"
+
+[ Adjust Aiming ]
+    "Space" + Mouse Moving
+ 
+[ Gun Camera ]
+    "R" (Small / Full / Off)
+    "Mouse Wheel" (Zoom)
+    "F" + "Mouse Wheel" (Adjust Vertical)
+
+[ Switch Bullet ]
+    "V"  (AP / HE)
+
+[ Select Tank ]
+    "0 1 2 3 4 5 6 7 8 9"
+
+[ Reset / Respawn ]
+    "Back Space" / "Enter(Return)"
+
+[ Time Scale ]
+    "+" / "-" / "Enter" (Num pad)
+
+[ Tank State ]
+    "Delete" (On / Off)
+
+
+*** How to change the operation type***
+(1) Select the top object of the tank in the Hierarchy window.
+   
+
+(2) Choose the "Input Device Type" in the Inspector window.
+   
+    [Input Device Type]
+    Choose the inputting device type and the operation type.
+    (Notice.)
+    This option is ignored when the tank has AI.
+
+    (Notice.)
+    If you have not finished setting up the "Input Manager", do not choose anything except for the "Mouse + KeyBoard (Default)".
+    Otherwise you will find many errors such as "UnityException: Input Axis Horizontal2 is not setup" in PlayMode.
+   
+    [Turn Type] (This option is displayed depending on the selection in the "Input Device Type".)
+    "Easy Turn" = The tank can do a Brake-Turn and Pivot-Turn.
+    "Classic Turn" = The tank can not do a Pivot-Turn.
+
+
+[ KeyBoard ( KeyBoard Only ) ]
+[ Drive ]
+    "Arrow keys"
+
+[ Turret and Cannon ]
+    "Z" + "Arrow keys"
+
+[ Camera Rotation ]
+    "W A S D"
+
+[ Camera Zoom ]
+    "E" / "R"
+
+[ Fire ]
+    "X"
+   
+[ Gun Camera ]
+    "Q" (Small / Full / Off)
+    "C" + "Arrow Up/Down" (Adjust Vertical)
+    "C" + "Arrow Left/Right" (Zoom)
+
+[ Switch Bullet ]
+    "V"  (HE / AP)
+
+[ Select Tank ]
+    "0 1 2 3 4 5 6 7 8 9"
+
+[ Reset / Respawn ]
+    "Back Space" / "Enter(Return)"
+
+[ Time Scale ]
+    "+" / "-" / "Enter" (Num pad)
+
+[ Tank State ]
+    "Delete" (On / Off)
+
+
+[ GamePad ( Stick operation ) ]
+[ Drive ]
+    "Left Stick"
+
+[ Turret and Cannon ]
+    "L Button" + "Right Stick"
+
+[ Camera Rotation ]
+    "Right Stick"
+
+[ Camera Zoom ]
+    "X Button" / "A Button"
+
+[ Fire ]
+    "R Button"
+
+[ Gun Camera ]
+    "B Button" (Small / Full / Off)
+    "Y Button" + "Left Stick Up/Down" (Adjust Vertical)
+    "Y Button" + "Left Stick Left/Right" (Zoom)
+
+[ Switch Bullet ]
+    "V"  (HE / AP)
+
+[ Select Tank ]
+    "0 1 2 3 4 5 6 7 8 9"
+
+[ Reset / Respawn ]
+    "Back Space" / "Enter(Return)"
+
+[ Time Scale ]
+    "+" / "-" / "Enter" (Num pad)
+
+[ Tank State ]
+    "Delete" (On / Off)
+
+
+[ GamePad ( Trigger operation ) ]
+[ Drive ]
+    "Left Trigger", "Right Trigger" (Forward)
+    "R Button", "L Button" (Backward)
+
+[ Turret and Cannon ]
+    "Left Stick"
+
+[ Camera Rotation ]
+    "Right Stick"
+
+[ Camera Zoom ]
+    "A Button" + "Left Stick Up/Down"
+
+[ Fire ]
+    "X Button"
+
+[ Gun Camera ]
+    "B Button" (Small / Full / Off)
+    "Y Button" + "Left Stick Up/Down" (Adjust Vertical)
+    "Y Button" + "Left Stick Left/Right" (Zoom)
+
+[ Switch Bullet ]
+    "V"  (HE / AP)
+
+[ Select Tank ]
+    "0 1 2 3 4 5 6 7 8 9"
+
+[ Reset / Respawn ]
+    "Back Space" / "Enter(Return)"
+
+[ Time Scale ]
+    "+" / "-" / "Enter" (Num pad)
+
+[ Tank State ]
+    "Delete" (On / Off)
+
+
+[ GamePad ( Stick + Trigger operation ) ]
+[ Drive ]
+    "Right Trigger" (forward)
+    "Left Trigger" (backward)
+    "Left Stick" (Steering)
+
+[ Turret and Cannon ]
+    "L Button" + "Right Stick"
+
+[ Camera Rotation ]
+    "Right Stick"
+
+[ Camera Zoom ]
+    "X Button" / "A Button"
+
+[ Fire ]
+    "R Button"
+
+[ Gun Camera ]
+    "B Button" (Small / Full / Off)
+    "Y Button" + "Left Stick Up/Down" (Adjust Vertical)
+    "Y Button" + "Left Stick Left/Right" (Zoom)
+
+[ Switch Bullet ]
+    "V"  (HE / AP)
+
+[ Select Tank ]
+    "0 1 2 3 4 5 6 7 8 9"
+
+[ Reset / Respawn ]
+    "Back Space" / "Enter(Return)"
+
+[ Time Scale ]
+    "+" / "-" / "Enter" (Num pad)
+
+[ Tank State ]
+    "Delete" (On / Off)
+
+

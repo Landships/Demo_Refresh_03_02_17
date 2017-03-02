@@ -1,0 +1,69 @@
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+"FAQ"
+
+Q. The Physics_Track has come off the wheels.
+
+A1. Attach the "Wheel Resize Script" to the wheels.
+    When the wheels are too small, they often go through the track pieces at the opening of PlayMode.
+    Select the "Create_###Wheel" and enable the "Wheel Resize Script" in the Inspector window.
+    And set the "Scale Size" to greater than 1.
+    When the wheels are too big and they protrude from the track, set the "Scale Size" to smaller than 1.
+    The wheels are resized to the specified scale at the opening of PlayMode.
+    And they return gently to the original size.
+
+A2. Use the "Soft_Landing".
+    If the track has been off by falling to the ground at the opening of PlayMode, try to use the "Soft_Landing" option.
+    Select the "MainBody" and enable the "Soft Landing" option in the Inspector window.
+    The tank can quietly fall down and gently land on the ground.
+   
+A3. Adjust the "Solver Iteration Count".
+    Select the "MainBody" and adjust the "Solver Iteration Count" in the Inspector window.
+    Physics_Track is easy to stretch when this value is set low.
+
+A4. Adjust the number of the track pieces.
+    When the track is too tight or too loose, adjust the number of the track pieces.
+    You can adjust the number of the pieces by one piece, adjusting the "Angle of Front Arc" and "Angle of Rear Arc".
+
+A5. Adjust the "Spacing" value.
+    The "Spacing" value in the "Create_TrackBelt" should be same as the length of the piece.
+    However you may adjust it just a little.
+
+For more solution about the tension of Physics_Track, please read the how-to text "How to adjust the tension of Physics_Track".
+
+
+Q. Can I use other game pad?
+
+A. Please modify the "Input Manager".
+    The "Input Manager" in this project is set for 'Xbox 360' controller.
+    When you use other gamepad, you might have to modify the "Input Manager".
+    Please refer to the following 'Wiki'.
+    http://wiki.etc.cmu.edu/unity3d/index.php/Joystick/Controller
+
+
+Q. How to increase the tank speed?
+
+A1. Increase the "Torque" and "Maximum Speed" values.
+    Select the "MainBody", and increase the "Torque" and "Maximum Speed" values in the Inspector window.
+
+A2. Decrease the "Fixed Timestep" value.
+    The motion of RigidBody is more accurately calculated when the "Fixed Timestep" value is decreased.
+    However this way is much increase the stress of the processor. Perhaps you can smoothly drive only one tank in the scene.
+    You can change the value in the "Game_Controller" in the scene.
+    And increase the "Torque" and "Maximum Speed" values in the MainBody.
+ 
+A3. Increase the "Time Scale" value.
+    The speed of the time passing can be changed in the "Game_Controller" in the scene.
+
+A4. Convert the Physics_Track into "Static_Track".
+    When your tank has Physics_Track, try to convert it to "Static_Track".
+    Please read the how-to text "How to convert the 'Physics_Track' into 'Static_Track'.
+
+
+
+Please feel free to contact me if you have any questions.
+
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+

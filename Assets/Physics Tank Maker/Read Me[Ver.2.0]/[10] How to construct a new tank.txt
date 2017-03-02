@@ -1,0 +1,19 @@
+
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+
+"How to construct a new tank"
+
+Please feel free to contact me if you have any questions.
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+
+
+(Outline)
+You can also construct a new tank from an empty object, but it is easier to remodel one of the sample tanks having a similar structure.
+This tutorial shows how to remodel the sample "KV-I" into "Sherman Fireflly".
+
+Please read the online tutorial in my website.
+
+

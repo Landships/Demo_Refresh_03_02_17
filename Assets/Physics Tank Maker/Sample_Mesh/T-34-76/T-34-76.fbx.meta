@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: 472a1b2409fa0fd40b69c2760c24f76a
+timeCreated: 1445748926
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: T-34-76_Barrel
+    100004: T-34-76_Barrel_Collider
+    100006: T-34-76_Body
+    100008: T-34-76_Cannon
+    100010: T-34-76_Cannon_Collider
+    100012: T-34-76_Turret
+    100014: T-34-76_Turret_Collider_Lower
+    100016: T-34-76_Turret_Collider_Upper
+    100018: T-34_Belt_Sp0280
+    100020: T-34_Body_Collider_Lower
+    100022: T-34_Body_Collider_Upper
+    100024: T-34_Idler_Arm_L
+    100026: T-34_Idler_Arm_R
+    100028: T-34_IdlerWheel
+    100030: T-34_IdlerWheel_Collider
+    100032: T-34_RoadWheel_A
+    100034: T-34_RoadWheel_B
+    100036: T-34_RoadWheel_Collider
+    100038: T-34_Sprocket
+    100040: T-34_Sprocket_Collider
+    100042: T-34_Sus_L
+    100044: T-34_Sus_R
+    400000: //RootNode
+    400002: T-34-76_Barrel
+    400004: T-34-76_Barrel_Collider
+    400006: T-34-76_Body
+    400008: T-34-76_Cannon
+    400010: T-34-76_Cannon_Collider
+    400012: T-34-76_Turret
+    400014: T-34-76_Turret_Collider_Lower
+    400016: T-34-76_Turret_Collider_Upper
+    400018: T-34_Belt_Sp0280
+    400020: T-34_Body_Collider_Lower
+    400022: T-34_Body_Collider_Upper
+    400024: T-34_Idler_Arm_L
+    400026: T-34_Idler_Arm_R
+    400028: T-34_IdlerWheel
+    400030: T-34_IdlerWheel_Collider
+    400032: T-34_RoadWheel_A
+    400034: T-34_RoadWheel_B
+    400036: T-34_RoadWheel_Collider
+    400038: T-34_Sprocket
+    400040: T-34_Sprocket_Collider
+    400042: T-34_Sus_L
+    400044: T-34_Sus_R
+    2300000: T-34-76_Barrel
+    2300002: T-34-76_Barrel_Collider
+    2300004: T-34-76_Body
+    2300006: T-34-76_Cannon
+    2300008: T-34-76_Cannon_Collider
+    2300010: T-34-76_Turret
+    2300012: T-34-76_Turret_Collider_Lower
+    2300014: T-34-76_Turret_Collider_Upper
+    2300016: T-34_Belt_Sp0280
+    2300018: T-34_Body_Collider_Lower
+    2300020: T-34_Body_Collider_Upper
+    2300022: T-34_Idler_Arm_L
+    2300024: T-34_Idler_Arm_R
+    2300026: T-34_IdlerWheel
+    2300028: T-34_IdlerWheel_Collider
+    2300030: T-34_RoadWheel_A
+    2300032: T-34_RoadWheel_B
+    2300034: T-34_RoadWheel_Collider
+    2300036: T-34_Sprocket
+    2300038: T-34_Sprocket_Collider
+    2300040: T-34_Sus_L
+    2300042: T-34_Sus_R
+    3300000: T-34-76_Barrel
+    3300002: T-34-76_Barrel_Collider
+    3300004: T-34-76_Body
+    3300006: T-34-76_Cannon
+    3300008: T-34-76_Cannon_Collider
+    3300010: T-34-76_Turret
+    3300012: T-34-76_Turret_Collider_Lower
+    3300014: T-34-76_Turret_Collider_Upper
+    3300016: T-34_Belt_Sp0280
+    3300018: T-34_Body_Collider_Lower
+    3300020: T-34_Body_Collider_Upper
+    3300022: T-34_Idler_Arm_L
+    3300024: T-34_Idler_Arm_R
+    3300026: T-34_IdlerWheel
+    3300028: T-34_IdlerWheel_Collider
+    3300030: T-34_RoadWheel_A
+    3300032: T-34_RoadWheel_B
+    3300034: T-34_RoadWheel_Collider
+    3300036: T-34_Sprocket
+    3300038: T-34_Sprocket_Collider
+    3300040: T-34_Sus_L
+    3300042: T-34_Sus_R
+    4300000: T-34_RoadWheel_B
+    4300002: T-34-76_Turret_Collider_Lower
+    4300004: T-34-76_Cannon_Collider
+    4300006: T-34_Body_Collider_Upper
+    4300008: T-34_Body_Collider_Lower
+    4300010: T-34_Idler_Arm_L
+    4300012: T-34_Idler_Arm_R
+    4300014: T-34-76_Barrel_Collider
+    4300016: T-34_Sprocket
+    4300018: T-34_IdlerWheel_Collider
+    4300020: T-34-76_Cannon
+    4300022: T-34_Sus_L
+    4300024: T-34-76_Body
+    4300026: T-34_Belt_Sp0280
+    4300028: T-34-76_Turret
+    4300030: T-34-76_Barrel
+    4300032: T-34_RoadWheel_Collider
+    4300034: T-34-76_Turret_Collider_Upper
+    4300036: T-34_RoadWheel_A
+    4300038: T-34_IdlerWheel
+    4300040: T-34_Sprocket_Collider
+    4300042: T-34_Sus_R
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

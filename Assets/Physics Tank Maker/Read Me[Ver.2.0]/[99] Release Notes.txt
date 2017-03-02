@@ -1,0 +1,127 @@
+"Release Notes"
+
+Version 2.0
+    *** Main Additional Contents ***
+    T-34/76.
+    T-34/85.
+    Panzer IV.
+    New options for Event Controller.
+    New sample scenes.
+    New sample Terrain.
+
+    *** Major Improvements ***
+    Tiger-I (remodeled).
+    Parking brake system.
+    Motion of Static Tracks.
+    RC_Camera.
+
+
+Version 1.9
+    *** Main Additional Contents ***
+    Event Controller.
+    New sample scenes.
+    RC_Camera.
+    New parking brake system.
+
+    *** Main Changes ***
+    Display method using U_GUI.
+    New options for Static_Wheel.
+
+    *** Bug Fix ***
+    Physics isues in "Create_TrackBelt" on Unity 5.1.
+    ConfigurableJoint settings in "Create_SteerWheel" and "Create_SwingBall".
+
+    *** Abolition ***
+    GUI_Text.
+
+
+Version 1.8
+    *** Main Additional Contents ***
+    T-35.
+    New Terrain.
+    New Scenes.
+    New options for AI.
+    New options for realistic behavior.
+
+    *** Main Changes ***
+    Target Marker system.
+    Lights settings.
+    Recoil system.
+
+    *** Abolition ***
+    KV-VI.
+    TwinBarrel Tank.
+
+
+Version 1.7
+    *** Main Additional Contents ***
+    New track system (Static_Track, Static_Wheel, SwingBall).
+    Sample tanks with Static_Track.
+
+
+Version 1.6
+    *** Main Additional Contents ***
+    AI tanks.
+    New damage control system.
+    New driving control system.
+    New turret operation method.
+    Remodeled Type89 tank.
+    New Terrain.
+
+    *** Abolition ***
+    Static Tanks.
+    JavaScript files.
+
+Version 1.5
+    *** Main Additional Contents ***
+    Remodeled Tiger-I, Sherman Firefly.
+    New operation method for using mouse and keyboard.
+    C# scripts.
+
+Version 1.4
+    *** Main Additional Contents ***
+    Sdkfz251 Half Track.
+    Remodeled KV-I, KV-II.
+    New operation method for Xbox360 controller.
+    Static Tanks.
+
+    *** Abolition ***
+    Decoy Tanks.
+
+Version 1.3
+    *** Main Additional Contents ***
+    Sound effects.
+    Sample Sound files.
+    New Terrain.
+
+Version 1.2 (Released on 27th Feb. 2014)
+    *** Main Changes ***
+    Camera Operation system.
+    Structure of Tank.
+    Game Control system.
+    Improvement of processing speed in EditMode.
+
+    *** Main Additional Contents ***
+    Damage Control system.
+    HE ( High-Explosive projectile ).
+    Operable and Breakable sample Tanks.
+    Light load sample Tanks.
+    'Wall Builder'.
+    Morser Karl
+
+    *** Abolition ***
+    Target Tanks.
+    Decoy Tanks.
+    "Camera_Base" System.    
+
+Version 1.1 (Released on 27th Jan. 2014)
+    *** Bug Fix ***
+    The problem that the 'Solver Iteration Count' could not be set normally has been fixed.
+     
+    *** Main Additional Contents ***
+    Type 89 Medium Tank.
+    Twin Barrel Tank.
+
+
+Version 1.0 (Released on 10th Dec. 2013)
+

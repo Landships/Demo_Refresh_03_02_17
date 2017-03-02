@@ -1,0 +1,54 @@
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+"How to update"
+
+Please feel free to contact me if you have any questions.
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+
+(Notice.)
+Please backup your project before importing the update.
+Most of the files will be overwritten.
+
+
+*** How to update old tanks (from Ver.1.9 to Ver.2.0) ***
+
+(1) Set up new options in the "Create_RoadWheel_CS(Script)".
+    Select the "Create_RoadWheel(_##)".
+    When the tank has Static Tracks, enable the "Fit for Static Tracks" option.
+   
+
+    And adjust the "Forward Limit Angle" and "Backward Limit Angle" values.
+   
+    [Forward Limit Angle]
+    [Backward Limit Angle]
+    The limit angle that the suspension arm can rotate forward or backward.
+   
+
+
+(2) Set the "Face the Enemy" option for AI tank if you need.
+    The "Face the Enemy" option for AI tank has been moved from AI_Core to the top object of the tank.
+    When the turret rotaion is limited in narrow angle range such as Jagdpanzer, set this option.
+   
+    [Face the Enemy]
+    When this is checked, the AI tank will turn toward the target tank while attacking.
+
+    [Face Offset Angle] (This option is displayed only when "Face the Enemy" is checked.)
+    The offset angle toward the target tank while attacking.
+
+    (Notice.)
+    "Face the Enemy" option is set also from "Event_Controller".
+    Please read the reference text "Event_Controller".
+
+
+*** How to update old scene (from Ver.1.9 to Ver.2.0) ***
+
+(1) Set up Event Cotrollers again.
+    The function activating inactive events has been changed in Ver.2.0.
+    When you need to inactive an event, disable its Event_Controller_CS(Script) instead of the GameObject.
+    (Notice.)
+    If the GameObject is inactivated, Game_Controller cannot correctly count the number of tanks in the scene.
+   
+
+    

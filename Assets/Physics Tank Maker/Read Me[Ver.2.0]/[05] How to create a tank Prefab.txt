@@ -1,0 +1,51 @@
+You can also read the online manual in my website.
+http://chobi-glass.com/Physics_Tank_Maker_manual/index.html
+
+"How to create a tank Prefab"
+
+Please feel free to contact me if you have any questions.
+shopmaster@chobi-glass.com
+http://chobi-glass.com/Unity/index.html
+
+
+(Notice.)
+Tank prefabs must be placed under the "Resources" folder in this project.
+
+
+(Notice.)
+Even when you change the tank settings in EditMode, the tank still has old settings when the tank is respawned in PlayMode.
+Create a new prefab to respawn the tank having the new settings, or overwrite its prefab (not recommended).
+
+"How to create a tank prefab"
+(Notice.)
+The method for making a tank prefab is different from the common way for making a prefab.
+Please follow the procedure below.
+
+(1) Select the top object of tank in the Hierarchy window.
+   
+
+(2) Break the prefab connection when its name is displayed in blue.
+    ( 'Game Object' >> 'Break Prefab Instance' )
+   
+
+(3) Change its name.
+    (Notice.) Give a name different from other prefabs.
+   
+
+(4) Drag and drop it into the "Resources" folder, or into the folder under the "Resources" folder.
+   
+
+(5) Select the tank in the Hierarchy window again.
+   
+
+(6) Make sure that the path of the prefab is indicated in the Inspector window.
+   
+
+(7) Press the "Apply" button in the Inspector window to update the path of the prefab.
+   
+
+(8) Respawn it in PlayMode.
+    Make sure that the tank has the new settings.
+
+
+
