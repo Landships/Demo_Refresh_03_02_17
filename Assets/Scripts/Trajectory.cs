@@ -33,8 +33,9 @@ public class Trajectory : MonoBehaviour {
 
     private void updateTrajectory(Vector3 position, Vector3 velocity) {
         Vector3 gravity = new Vector3(0, -9.81f, 0);
-        int numSteps = 50;
-        float timeDelta = 50.0f / velocity.magnitude;
+        int numSteps = 200;
+        //float timeDelta = 50.0f / velocity.magnitude;
+        float timeDelta = 0.1f;
         trajectoryLine.numPositions = numSteps;
         for (int i = 0; i < numSteps; ++i) {
             trajectoryLine.SetPosition(i, position);
