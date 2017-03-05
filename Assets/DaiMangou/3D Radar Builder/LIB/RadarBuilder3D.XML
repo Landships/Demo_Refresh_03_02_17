@@ -1,0 +1,1484 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RadarBuilder3D</name>
+    </assembly>
+    <members>
+        <member name="F:DaiMangou.RadarBuilder3D._3DRadar.doInstanceObjectCheck">
+            <summary>
+            trigger search for new objes for the radar to track as blips
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D._3DRadar.BeginObjectInstanceCheck">
+            <summary>
+            when set to true, will trigger a search for objects to track, once completed , it will reset it false
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.InstanceObjectCheck">
+            <summary>
+            will trigger a search for objects to track
+            
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.ReadyCheck">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.Update">
+            <summary>
+            Called once perframe, ecch radar function too is called once per frame
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.CameraSetup">
+            <summary>
+                here we setup main camera, this cript will constantly searn for your main camera or camera you wish to find IF it
+                is not yet found
+                during th abscence of a camera , no errors will be thrown.
+                However you will be warned if you do not set a 'Rendering camera' for your radar.
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.Frontis">
+            <summary>
+                Here we determine which direction we wish for our radars front to be
+                For example, If you ser Frontis to be East then all blips moving forward through the Z axis will appear to be
+                moving to the east in your radar .
+                This makes the function very useful for various games
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.SetRotations">
+            <summary>
+                Here we set the rotation of our radar to be proportional to the rotation of the target camera
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.SetRadarDimentions">
+            <summary>
+                Scale the radar lie any other object or by usign the  RadarDiameter Value when UseLocalScale is true
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.SnapAndPositioning">
+            <summary>
+                Snap position allows for the radar to be positioned in 9 points of the screen
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.CenterObjectBlip">
+            <summary>
+                Here we create the center object blip if one is to be created, else we fall back to using the radar itself (this
+                transform) as the center object
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.CreateCenterObjectTrackingLine(DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D,UnityEngine.GameObject)">
+            <summary>
+            </summary>
+            <param name="item"></param>
+            <param name="pivot"></param>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.CheckAndSetBlips">
+            <summary>
+                Here we go about creating all other radar blips
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.CreateTrackingLine(DaiMangou.RadarBuilder3D.Editor.RadarBlips3D,UnityEngine.GameObject)">
+            <summary>
+                called inside CheckAndSetBLips at the mment a blip is created that uses tracking lines
+            </summary>
+            <param name="item"></param>
+            <param name="pivot"></param>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.Minimap">
+            <summary>
+                here we set up and reposition the minimap
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D._3DRadar.RotateSpecifics">
+            <summary>
+                Here we determine what 'Design layers' are to be rotates and what object rotation they will match proportionally |
+                inversely and with a damping
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.ThisScreen">
+            <summary>
+            The current screen
+            </summary>
+        </member>
+        <member name="P:DaiMangou.RadarBuilder3D.ThisScreen.ScreenRect">
+            <summary>
+            The current screen rect
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.RectExt">
+            <summary>
+            Extensions of the Rect class
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.SetToMouseCenter(UnityEngine.Rect)">
+            <summary>
+            Will set <paramref name="rect"/> to be positioned at the mouse position
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.SetToMouseCenter(UnityEngine.Rect,System.Single,UnityEngine.Vector2)">
+            <summary>
+             will set <paramref name="rect"/> to be positioned at the mouse positiom at the <paramref name="rect"/> center and scaled by <paramref name="scale"/> with its pivot point at  <paramref name="pivotPoint"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="scale"></param>
+            <param name="pivotPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToCenter(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the center of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToUpperRight(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the upper right of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToLowerRight(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the lower right <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToUpperLeft(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the upper left of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToLowerLeft(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the lower left of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToCenterTop(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the top center of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToCenterBottom(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the bottom center of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToCenterLeft(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the left center of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.ToCenterRight(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Will set create a Rect to be of <paramref name="width"/> and <paramref name="height"/> at the right center of <paramref name="rect"/> with <paramref name="xPaddin"/> and <paramref name="yPadding"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="xPadding"></param>
+            <param name="yPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.RectExt.AddRect(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Increases the size of <paramref name="rect"/> by <paramref name="width"/> and <paramref name="height"/> and position of  <paramref name="rect"/> by <paramref name="x"/> and <paramref name="y"/>
+            </summary>
+            <param name="rect"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Vector2Ext">
+            <summary>
+            Extension of the Vector2 Class
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:DaiMangou.RadarBuilder3D.Vector2Ext.AddPadding(UnityEngine.Vector2,System.Single,System.Single)" -->
+        <member name="T:DaiMangou.RadarBuilder3D.Vector3Ext">
+            <summary>
+            Extensions of the Vecor3 Class
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.Vector3Ext.Modify(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary>
+            Modifies the x,y,z values of <paramref name="vector3"/> by <paramref name="x"/>  , <paramref name="y"/> , <paramref name="z"/>
+            </summary>
+            <param name="vector3"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.ListExt">
+            <summary>
+            Extension of the List classs
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.ListExt.Resize``1(System.Collections.Generic.List{``0},System.Int32,``0)">
+            <summary>
+            Resize <paramref name="list"/> by <paramref name="size"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="size"></param>
+            <param name="c"></param>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.ListExt.AddMany``1(System.Collections.Generic.List{``0},``0[])">
+            <summary>
+            Add multiple values to <paramref name="List"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="elements"></param>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.DMMath">
+            <summary>
+            DMMath functions 
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.CurrentEvent">
+            <summary>
+            a single 'instance' of Event
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.CurrentRawEvent">
+            <summary>
+            a single 'instance' of Event.rawType
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.FrontIs">
+            <summary>
+            Determining what defines the forward facing position of the radar 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.FrontIs.East">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.FrontIs.West">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.FrontIs.North">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.FrontIs.South">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.valueState">
+            <summary>
+             a selection betwen Positive and Negative
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.valueState.positive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.valueState.negative">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.RetargetRotation">
+            <summary>
+            Determining what axis value we wish to pass to another axis value
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.X_to_Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.X_to_Z">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.Y_to_X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.Y_to_Z">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.Z_to_X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.Z_to_Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RetargetRotation.none">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.Rotations">
+            <summary>
+            Selection between Inverse rotation and Proportional rotation
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.Rotations.Proportional">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.Rotations.Inverse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.TargetObject">
+            <summary>
+            Selection of the way in which you wish to select and object
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.TargetObject.FindObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.TargetObject.ObectWithTag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.TargetObject.ThisObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.TargetObject.InstancedBlip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.TargetBlip">
+            <summary>
+            The Targeted blips 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.TargetBlip.ThisObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.TargetBlip.InstancedBlip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.CreateBlipAs">
+            <summary>
+             A selection between Sprite,Mesh and Prefab
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.CreateBlipAs.AsSprite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.CreateBlipAs.AsMesh">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.CreateBlipAs.AsPrefab">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.RadarPositioning">
+            <summary>
+            The method by which we wish to use to position the radar
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarPositioning.Snap">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarPositioning.Manual">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.MapType">
+            <summary>
+            Choose between Realtime minimap or a stati minimap
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MapType.Realtime">
+            <summary>
+            Will tell the Rada r builder to use real time images as MinimapTexture
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MapType.Static">
+            <summary>
+            Will tell Radar Builder to use a Static predesigned image as Minmap texture
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.ObjectFindingMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.ObjectFindingMethod.Recursive">
+            <summary>
+            Determines if we will be using recursive gameobject find. call WARNING, THIS IS A SLOW PROCESS
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.ObjectFindingMethod.Pooling">
+            <summary>
+             If true, you will NEED to call _3DRadar.radar3D.DoInstanceObjectCheck() at instance or at the end of instancing
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.CenterObjectFindingMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.CenterObjectFindingMethod.Recursive">
+            <summary>
+            Determines if we will be using recursive gameobject find.
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.CenterObjectFindingMethod.Single">
+            <summary>
+             If true, you will NEED to call _3DRadar.radar3D.DoCenterInstanceObjectCheck() at instance or at the end of instancing
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.RotationTarget">
+            <summary>
+            <para> Defines the object which is to be targeted and the way in which it must be rotated </para>
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.ShowDesignSetings">
+            <summary>
+            called only from editor , and is not necessary at runtime 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.UseY">
+            <summary>
+            When true , the z rotation will be the same as the Y rotation
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.FreezeX">
+            <summary>
+            Freeze rotation around particular axis
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.FreezeY">
+            <summary>
+            Freeze rotation around particular axis
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.FreezeZ">
+            <summary>
+            Freeze rotation around particular axis
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.RotationDamping">
+            <summary>
+            Damping used to control rotation of particular design layer
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.tag">
+            <summary>
+            the string tag you define 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.FindingName">
+            <summary>
+            the name of the object you wish to find
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.InstancedObjectToTrackBlipName">
+            <summary>
+            The name of the instanced object  you wish to target
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.InstancedTargetBlipname">
+            <summary>
+            the name of the instanced blip you wish to track
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.rotations">
+            <summary>
+            Selection between Inverse rotation and Proportional rotation
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.TargetedObject">
+            <summary>
+             This may be a blip or any other object in scene
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.Target">
+            <summary>
+            the object whose rotation you wish to target
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.ObjectToTrack">
+            <summary>
+            Selection of the way in which you wish to select and object
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.target">
+            <summary>
+            The blip you wish to target
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.RetargetedRotation">
+            <summary>
+            Determining what axis value we wish to pass to another axis value
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.ValueState">
+            <summary>
+            A selection between positive and negative
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RotationTarget.AddedRotation">
+            <summary>
+            this rotation value is usually used when using sprites 
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.MiniMapModule">
+            <summary>
+            Minimap Module 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.mapType">
+            <summary>
+            Choose between Realtime minimap or a stati minimap
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.MapTexture">
+            <summary>
+            Texture to be used for static minimaps
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.generated">
+            <summary>
+            Check if the map has been generated
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.calibrate">
+            <summary>
+            Determine if the static minimap is being calibrated 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.Map">
+            <summary>
+            the objet which will use the Map texture and Masked Material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.Mask">
+            <summary>
+            the object which will use the mask material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.SavedSceneScale">
+            <summary>
+            Cashe of the SceneScale vlaue
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.MapScale">
+            <summary>
+            The value set during calibratin of ststic minimap
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.SavedMapScale">
+            <summary>
+            Cashe of the MapScale vlaue
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.Scalingfactor">
+            <summary>
+            Determines by what rate the minmap is scales at rintime
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.MapMaterial">
+            <summary>
+            Masked material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.MaskMaterial">
+            <summary>
+            Mask Material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.layer">
+            <summary>
+            The layer on which the minimap will be rendered
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.renderTexture">
+            <summary>
+            the RenderTexture to be used with the realtime minimap
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.RealtimeMinimapCamera">
+            <summary>
+            The camera reading the RenderTexture for the Minimap
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.CameraHeight">
+            <summary>
+            the position of the RealtimeMinimapCamera in the Y axis
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.OrderInLayer">
+            <summary>
+            the order in layer of the blip
+            </summary>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.MaskSprite">
+            <summary>
+            generates are sprite specificially used for the mask layer of the Radar
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DaiMangou.RadarBuilder3D.Editor.MiniMapModule.ProceduralMapQuad">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.OptimizationModule">
+            <summary>
+            Options for optimizing  the radars functions
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.poolSize">
+            <summary>
+             pool size for objects you wish to track
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.SetPoolSizeManually">
+            <summary>
+            Determines if the blip will be using pooling
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.objectFindingMethod">
+            <summary>
+            Options for usng two diferent object finding methods
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.RemoveBlipsOnTagChange">
+            <summary>
+            if true , blips will be removed if the object they track has lost its original tag
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.RemoveBlipsOnDisable">
+            <summary>
+            if true , blips will be removed if the object they track has been disabled
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.RequireInstanceObjectCheck">
+            <summary>
+            if true and you are using Recursive optimization method then you can call _3DRadar.radar3D.doInstanceObjectCheck() trigger object search;
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.OptimizationModule.RecalculatePoolSizeBasedOnFirstFoundObjects">
+            <summary>
+            By setting this to true, you can ensure that evne if your pool value at atart is greater then the actual amount of objects that can be found , your pool value will be reset to the amount of objects found ao that recusrsive searching is avoided
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.DoRemoval">
+            <summary>
+            Tell the blip to do a removal of blips if the Recursive optimization method is used 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.Instanced">
+            <summary>
+            checks if all blips have ben instanced
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.IsActive">
+            <summary>
+            check if the blip is set turned on or off
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowBLipSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowSpriteBlipSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowMeshBlipSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowPrefabBlipSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.IsTrackRotation">
+            <summary>
+            Determines if the blip will be tracking the rotation of its target
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BlipCanScleBasedOnDistance">
+            <summary>
+            Determines if th blips can scale by distance
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowTrackingLineSettings">
+            <summary>
+            INTERNL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.UseTrackingLine">
+            <summary>
+            Determines if we should use tracking lines or not.
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.UseBaseTracker">
+            <summary>
+            Determines if we should use basetrackers or not
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowBaseTrackerSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.lockX">
+            <summary>
+            Determines if the X rotation of the tracked object should be locked to 0
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.lockY">
+            <summary>
+            Determines if the Y rotation of the tracked object should be locked to 0
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.lockZ">
+            <summary>
+            Determines if the Z rotation of the tracked object should be locked to 0
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.UseLOD">
+            <summary>
+            Determines if the mesh blip will use a the Radar Builder LOD system
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowLODSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowGeneralSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowAdditionalOptions">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.AlwaysShowBlipsInRadarSpace">
+            <summary>
+            determines if the blip should always remeing inside the radar 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowLowMeshSetings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowMediumMeshSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowHighMeshSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ShowOptimizationSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.SmoothScaleTransition">
+            <summary>
+            if you are using Always Show and Scale By Distance , this will ensure that you have a smooth ttansition from the moment your blip passes the Tracking Bounds to the moment is is scales to its minimaum scale
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.icon">
+            <summary>
+            The blip icon if the blip is a sprite
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BaseTracker">
+            <summary>
+            The base tracker sprite
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.prefab">
+            <summary>
+            Prefab blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.State">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.Tag">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.SpriteMaterial">
+            <summary>
+            The material used for the sprite blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.TrackingLineMaterial">
+            <summary>
+            The material used for the tracking line
+            /// </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BaseTrackerMaterial">
+            <summary>
+            The material used for the base tracker
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.mesh">
+            <summary>
+            The mesh blip mesh when LOD is not active
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.Low">
+            <summary>
+            The low poly mesh when LOD is active
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.Medium">
+            <summary>
+            The medium poly count mesh when the LOD is active
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.High">
+            <summary>
+            The high poly count mesh when the LOD is active
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.MeshMaterials">
+            <summary>
+            All mesh materials usd by the Mesh
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.colour">
+            <summary>
+            THe colour of the material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.TrackingLineStartColour">
+            <summary>
+            The colour start of the tracking line
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.TrackingLineEndColour">
+            <summary>
+            The end colour of the tracking line
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BaseTrackerColour">
+            <summary>
+            The colour ued by the base tracker material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BlipSize">
+            <summary>
+            The size of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.DynamicBlipSize">
+            <summary>
+             The default minimum scale of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BlipMinSize">
+            <summary>
+            The minimum size of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BlipMaxSize">
+            <summary>
+            The maximum size of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.TrackingLineDimention">
+            <summary>
+            The width of the tracking line
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.LowDistance">
+            <summary>
+            The distance at which the LOW mesh will replace the current mesh of the mesh blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.MediumDistance">
+            <summary>
+            The distance at which the MEDIUM mesh will replace the current mesh of the mesh blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.HighDistance">
+            <summary>
+            The distance at which the HIGH mesh will replace the current mesh of the mesh blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BaseTrackerSize">
+            <summary>
+            The scale of th base tracker
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.NumberOfBLips">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.count">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.MatCount">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.Layer">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.TrackingLineObject">
+            <summary>
+            A list of All tracking lines
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.gos">
+            <summary>
+            A list of the objects being tracked
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.RadarObjectToTrack">
+            <summary>
+            A list of the actual blips you see in your radar
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.BaseTrackers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D._CreateBlipAs">
+            <summary>
+            Determines what the blip should be created as , prefab or sprite
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.ObjectCount">
+            <summary>
+             records the amount of tracked objects in the radr far this blip type
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.OrderInLayer">
+            <summary>
+            the order in layer of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.sortingLayer">
+            <summary>
+             Sorting layer of the sprite blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarBlips3D.optimization">
+            <summary>
+            Methods of optimizing radar performance
+            </summary>
+        </member>
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.Instanced">
+            <summary>
+            checks if all blips have ben instanced
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowBLipSettings">
+            <summary>
+             INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowSpriteBlipSettings">
+            <summary>
+             INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowMeshBlipSettings">
+            <summary>
+             INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowPrefabBlipSettings">
+            <summary>
+             INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.IsTrackRotation">
+            <summary>
+            Determines if the blip will be tracking the rotation of its target
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.lockX">
+            <summary>
+            Determines if the X rotation of the tracked object should be locked to 0
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.lockY">
+            <summary>
+            Determines if the Y rotation of the tracked object should be locked to 0
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.lockZ">
+            <summary>
+            Determines if the Z rotation of the tracked object should be locked to 0
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowGeneralSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.AlwaysShowCenterObject">
+            <summary>
+            Determines if the enter object or center blip should alwats be shown in th radar 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.CenterObjectCanScaleByDistance">
+            <summary>
+            Determines if the center object (center blip) can scale by distance
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowAdditionalOptions">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowTrackingLineSettings">
+            <summary>
+            INTERNL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.UseTrackingLine">
+            <summary>
+            Determines if we should use tracking lines or not.
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.UseBaseTracker">
+            <summary>
+            Determines if we should use basetrackers or not
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.ShowBaseTrackerSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.SmoothScaleTransition">
+            <summary>
+            if you are using Always Show and Scale By Distance , this will ensure that you have a smooth ttansition from the moment your blip passes the Tracking Bounds to the moment is is scales to its minimaum scale
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.icon">
+            <summary>
+            The blip icon if the blip is a sprite
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BaseTracker">
+            <summary>
+            The base tracker sprite
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.prefab">
+            <summary>
+            Prefab blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.State">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.Tag">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.SpriteMaterial">
+            <summary>
+            The material used for the sprite blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.TrackingLineMaterial">
+            <summary>
+            The material used for the tracking line
+            /// </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BaseTrackerMaterial">
+            <summary>
+            The material used for the base tracker
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.mesh">
+            <summary>
+            The mesh blip mesh when LOD is not active
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.MeshMaterials">
+            <summary>
+            All mesh materials usd by the Mesh
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.colour">
+            <summary>
+            THe colour of the material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.TrackingLineStartColour">
+            <summary>
+            The colour start of the tracking line
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.TrackingLineEndColour">
+            <summary>
+            The end colour of the tracking line
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BaseTrackerColour">
+            <summary>
+            The colour ued by the base tracker material
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BlipSize">
+            <summary>
+            The size of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.TrackingLineDimention">
+            <summary>
+            The width of the tracking line
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.DynamicBlipSize">
+            <summary>
+             The default minimum scale of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BlipMinSize">
+            <summary>
+            The minimum size of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BlipMaxSize">
+            <summary>
+            The maximum size of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BaseTrackerSize">
+            <summary>
+            The scale of th base tracker
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.Layer">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.OrderInLayer">
+            <summary>
+            the order in layer of the blip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.CenterBlip">
+            <summary>
+            The blip at the center of the radar 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.CenterObject">
+            <summary>
+            The object being tracked to and used to represent the CenterBlip
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.MatCount">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D._CreateBlipAs">
+            <summary>
+            Determines what the blip should be created as , prefab or sprite
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.BaseTrackerObject">
+            <summary>
+            Object which will sit on the y plane of the radar at all time 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:DaiMangou.RadarBuilder3D.Editor.RadarCenterObject3D.TrackingLine" -->
+        <member name="T:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.RadarDiameter">
+            <summary>
+            This is the Diameter of the radar, this value will directly change the scale of the Radars child object "Designs" once UseSceneScale is false
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.SceneScale">
+            <summary>
+            This is the amound of the scene that the radar is able to 'see' in order to collect dats on things to track and display
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.TrackingBounds">
+            <summary>
+            The range in which all blips can be shown in the radar
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.InnerCullingZone">
+            <summary>
+             The diameter of the zone at the center of the radar in which all blips will ce culled 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.RadarRotationOffset">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.ConstantRadarRenderDistance">
+            <summary>
+            Do not replace this value
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.xPadding">
+            <summary>
+            The padding on the x and Y axis of the radar system
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.yPadding">
+            <summary>
+            The padding on the x and Y axis of the radar system
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.radarPositioning">
+            <summary>
+            Determins if the radar will ise Manual position or Snap Positioning
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.snapPosition">
+            <summary>
+            Determines where in scren space the radar system will be positioned
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.frontIs">
+            <summary>
+            Determining what defines the forward facing position of the radar 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.RadarRect">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.SnappedRect">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.Count">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.DesignsCount">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.UseLocalScale">
+            <summary>
+            Determines if we should use the scale of the Radar "Designs" child object instead of the RadarDiameter 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.Visualize">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.LinkToTrackingBounds">
+            <summary>
+            Determines if the tracking bounds values will always be the same as 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.ShowScaleSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.ShowRenderCameraSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.ShowPositioningSettings">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.IgnoreDiameterScale">
+            <summary>
+            When true, the radar ; diameter (Sale of the Radars "Designs" child object) when scales to a vlue greater or less than one 
+            will not prompt the radar system to reposition itslf automatically to maintain a correct position in screen space
+            
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.ManualCameraSetup">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.UseMainCamera">
+            <summary>
+            determines if we will be using the gameobject in the scne with the tag "Main Camera"
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D._3DSystemsWithScreenSpaceFunction">
+            <summary>
+            Determines if the 3D Radar will also be using the screen space system
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D._3DSystemsWithMinimapFunction">
+            <summary>
+            Determines if the radar can also be a minimap
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.ShowMinimapSettings">
+            <summary>
+            INTERNAL USE ONLY 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.DesignsObject">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.camera">
+            <summary>
+            The camera which will be the camera your player views the world through at any time 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.renderingCamera">
+            <summary>
+            The camera whuch will only render radar systems, (These camera are automatically created for you)
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.CameraTag">
+            <summary>
+            INTERNAL USE ONLY
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.RotationTargets">
+            <summary>
+            The list of Rotation targets 
+            </summary>
+        </member>
+        <member name="F:DaiMangou.RadarBuilder3D.Editor.RadarDesign3D.Pan">
+            <summary>
+            The pan of the blips in the radar
+            </summary>
+        </member>
+    </members>
+</doc>
