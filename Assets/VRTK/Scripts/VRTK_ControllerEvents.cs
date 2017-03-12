@@ -312,7 +312,7 @@ namespace VRTK
             {
                 TriggerPressed(this, e);
             }
-            Debug.Log("PRESsED");
+           // Debug.Log("PRESsED");
         }
 
         public virtual void OnTriggerReleased(ControllerInteractionEventArgs e)

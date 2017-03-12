@@ -20,7 +20,7 @@ public class handScript : MonoBehaviour {
         if (controller_events.triggerPressed)
         {
             handAnimator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
-            Debug.Log("HELO");
+            //Debug.Log("HELO");
         }
         //else if (touch_events.GetTouchedObject() != null)
         //{

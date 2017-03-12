@@ -68,6 +68,7 @@ public class Bullet_Control_CS : MonoBehaviour
         if (Live_Flag)
         {
             Debug.Log("on collision enter");
+            Debug.Log(collision.gameObject);
             Hit(collision.gameObject, collision.contacts[0].normal);
         }
     }

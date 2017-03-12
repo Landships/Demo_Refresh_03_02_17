@@ -95,7 +95,7 @@ public class Cannon_Fire_CS : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("FIRE");
+        //Debug.Log("FIRE");
         if (Reload_Flag && Trouble_Flag == false && Turret_Horizontal_Script.OpenFire_Flag)
         {
             if (Karl_Flag)

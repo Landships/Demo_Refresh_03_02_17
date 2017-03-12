@@ -119,13 +119,13 @@ public class Damage_Control_CS : MonoBehaviour {
 	}
 
 	public bool Breaker ( float Hit_Energy ) { 
-        Debug.Log("is this hitting? Hit = " + Hit_Energy + " Durability = " + Durability + "ai id = " + ai_id);
+        //Debug.Log("is this hitting? Hit = " + Hit_Energy + " Durability = " + Durability + "ai id = " + ai_id);
         if (Hit_Energy >= Durability)
         {
-            Debug.Log("PENETRATION");
+           // Debug.Log("PENETRATION");
             if (ai_id == 0) // own tank
             {
-                Debug.Log("Player Penetration");
+                //Debug.Log("Player Penetration");
                 transform.root.GetChild(0).GetComponent<Turret_Controller_VR>().Alert_Penetration(Type);
             }
             else // ai on authority

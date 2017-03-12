@@ -110,6 +110,7 @@ public class Bullet_Generator_CS : MonoBehaviour
             Fire_Object = Instantiate(MuzzleFire_Object, This_Transform.position, This_Transform.rotation) as GameObject;
             Fire_Object.transform.parent = This_Transform;
         }
+        Debug.Log("fire is getting to here");
         // Create GameObject & Set Transform
         GameObject Bullet_Object = new GameObject("Bullet_AP");
         Bullet_Object.transform.position = This_Transform.position + (This_Transform.forward * Offset);

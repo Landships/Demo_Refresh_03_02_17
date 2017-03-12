@@ -2,19 +2,22 @@
 {
     using UnityEngine;
 
-    public class Button : VRTK_InteractableObject
+    public class ResetButton : VRTK_InteractableObject
     {
         public float downForce;
         public float limit;
         Vector3 upperLim;
         Vector3 lowerLim;
-        public Fire_Controller turret_controller;
+        public GameObject leftLever;
+        public GameObject rightLever;
 
         public override void StartUsing(GameObject usingObject)
         {
             base.StartUsing(usingObject);
             this.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, -downForce, 0f), ForceMode.VelocityChange);
-            turret_controller.OwnerFire();
+            Debug.Log("firing?");
+            leftLever.transform.localEulerAngles = new Vector3(0, leftLever.transform.localEulerAngles.y, leftLever.transform.localEulerAngles.z);
+            rightLever.transform.localEulerAngles = new Vector3(0, rightLever.transform.localEulerAngles.y, rightLever.transform.localEulerAngles.z);
         }
 
         protected override void Start()
