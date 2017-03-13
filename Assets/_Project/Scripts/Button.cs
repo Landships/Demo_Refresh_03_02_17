@@ -1,5 +1,6 @@
 ﻿namespace VRTK
 {
+    using System.Collections;
     using UnityEngine;
 
     public class Button : VRTK_InteractableObject
@@ -9,13 +10,19 @@
         Vector3 upperLim;
         Vector3 lowerLim;
         public Fire_Controller turret_controller;
+        public Cannon_Fire_CS fire;
 
         public override void StartUsing(GameObject usingObject)
         {
             base.StartUsing(usingObject);
             this.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, -downForce, 0f), ForceMode.VelocityChange);
             turret_controller.OwnerFire();
+            objectHighlighter.Highlight(Color.red, 2);
+            cooldownHighlight = true;
+            StartCoroutine(ExecuteAfterTime(2));
         }
+
+
 
         protected override void Start()
         {
@@ -35,5 +42,16 @@
                 Debug.Log(lowerLim);
             }
         }*/
+
+        IEnumerator ExecuteAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+            objectHighlighter.Unhighlight();
+            Debug.Log("this is totally working");
+            cooldownHighlight = false;
+            // Code to execute after the delay
+        }
     }
 }
+
+

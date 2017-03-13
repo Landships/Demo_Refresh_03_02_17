@@ -203,6 +203,7 @@ namespace VRTK
         protected bool forceDisabled;
         protected VRTK_BaseHighlighter objectHighlighter;
         protected bool autoHighlighter = false;
+        protected bool cooldownHighlight = false;
 
         public virtual void OnInteractableObjectTouched(InteractableObjectEventArgs e)
         {
@@ -405,7 +406,7 @@ namespace VRTK
         /// <param name="globalHighlightColor">The colour to use when highlighting the object.</param>
         public virtual void ToggleHighlight(bool toggle, Color globalHighlightColor)
         {
-            if (highlightOnTouch)
+            if (highlightOnTouch && !cooldownHighlight)
             {
                 if (toggle && !IsGrabbed() && !IsUsing())
                 {
