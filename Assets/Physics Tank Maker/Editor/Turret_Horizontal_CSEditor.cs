@@ -16,6 +16,8 @@ public class Turret_Horizontal_CSEditor : Editor {
 	SerializedProperty OpenFire_AngleProp ;
 	SerializedProperty Marker_PrefabProp ;
 
+    SerializedProperty Rotating_ComponentProp;
+
 	void OnEnable () {
 		Limit_FlagProp = serializedObject.FindProperty ( "Limit_Flag" ) ;
 		Max_RightProp = serializedObject.FindProperty ( "Max_Right" ) ;
@@ -26,7 +28,10 @@ public class Turret_Horizontal_CSEditor : Editor {
 		Deceleration_TimeProp = serializedObject.FindProperty ( "Deceleration_Time" ) ;
 		OpenFire_AngleProp = serializedObject.FindProperty ( "OpenFire_Angle" ) ;
 		Marker_PrefabProp = serializedObject.FindProperty ( "Marker_Prefab" ) ;
-	}
+
+        Rotating_ComponentProp = serializedObject.FindProperty("Rotating_Component");
+
+    }
 	
 	public override void OnInspectorGUI () {
 		GUI.backgroundColor = new Color ( 1.0f , 1.0f , 0.5f , 1.0f ) ;
@@ -52,7 +57,10 @@ public class Turret_Horizontal_CSEditor : Editor {
 		EditorGUILayout.Space () ;
 		EditorGUILayout.HelpBox( "Marker settings", MessageType.None, true ) ;
 		Marker_PrefabProp.objectReferenceValue = EditorGUILayout.ObjectField ( "Marker Prefab" , Marker_PrefabProp.objectReferenceValue , typeof ( GameObject ) , true ) ;
-		EditorGUILayout.Space () ; EditorGUILayout.Space () ;
+
+        Rotating_ComponentProp.objectReferenceValue = EditorGUILayout.ObjectField("Rotating Component", Rotating_ComponentProp.objectReferenceValue, typeof(GameObject), true);
+
+        EditorGUILayout.Space () ; EditorGUILayout.Space () ;
 		
 		serializedObject.ApplyModifiedProperties ();
 	}

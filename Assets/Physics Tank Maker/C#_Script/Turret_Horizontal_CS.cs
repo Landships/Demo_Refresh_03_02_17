@@ -4,6 +4,8 @@ using System.Collections;
 public class Turret_Horizontal_CS : MonoBehaviour
 {
 
+    public GameObject Rotating_Component;
+
     public bool Limit_Flag;
     public float Max_Right = 170.0f;
     public float Max_Left = 170.0f;
@@ -40,6 +42,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
     Transform This_Transform;
     Transform Parent_Transform;
     Transform Root_Transform;
+
 
     int Ray_LayerMask = ~((1 << 10) + (1 << 2)); // Layer 2 = Ignore Ray, Layer 10 = Ignore All.
 
@@ -424,6 +427,8 @@ public class Turret_Horizontal_CS : MonoBehaviour
                 Current_Angle = Mathf.Clamp(Current_Angle, Max_Left, Max_Right);
             }
             This_Transform.localRotation = Quaternion.Euler(new Vector3(0.0f, Current_Angle, 0.0f));
+
+            updateModelAngle();
         }
     }
 
@@ -525,6 +530,19 @@ public class Turret_Horizontal_CS : MonoBehaviour
     void Get_AI(AI_CS Temp_Script)
     {
         AI_Script = Temp_Script;
+    }
+
+    void updateModelAngle() {
+
+        if (Rotating_Component) {
+            float UIAngle = Rotating_Component.GetComponent<RectTransform>().localEulerAngles.z;
+            Rotating_Component.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -Current_Angle - UIAngle));
+        }
+
+        //GameObject rotatingComponent = GameObject.Find("RotatingComponent");
+        
+
+
     }
 
 }
