@@ -23,36 +23,40 @@ public class SetIndicators : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        Debug.Log("Checking Angles");
+
         if (angleScript.GetHoriCrankDelta() > 0.1) {
-            rightRenderer.material.SetColor("Red", Color.red);
+            //rightRenderer.material.color = Color.red);
+            rightRenderer.material.color = Color.red;
         }
 
         else {
-            rightRenderer.material.SetColor("Red", Color.black);
+            rightRenderer.material.color = Color.black;
         }
 
         if (angleScript.GetHoriCrankDelta() < -0.1) {
-            leftRenderer.material.SetColor("Red", Color.red);
+            leftRenderer.material.color = Color.red;
         }
 
         else {
-            leftRenderer.material.SetColor("Red", Color.black);
-        }
-
-        if (angleScript.GetVertCrankDelta() > 0.1) {
-            upRenderer.material.SetColor("Red", Color.red);
-        }
-
-        else {
-            upRenderer.material.SetColor("Red", Color.black);
+            leftRenderer.material.color = Color.black;
         }
 
         if (angleScript.GetVertCrankDelta() < -0.1) {
-            downRenderer.material.SetColor("Red", Color.red);
+            upRenderer.material.color = Color.red;
         }
 
         else {
-            downRenderer.material.SetColor("Red", Color.black);
+            upRenderer.material.color = Color.black;
+        }
+
+        if (angleScript.GetVertCrankDelta() > 0.1) {
+            downRenderer.material.color = Color.red;
+        }
+
+        else {
+            downRenderer.material.color = Color.black;
         }
 
 
