@@ -14,6 +14,8 @@ public class spawner_manager : MonoBehaviour
     static Ai_Prep ai_3;
     static Ai_Prep ai_4;
     static GameObject gunner_spawn;
+	static TextHide driver_text;
+	static TextHide turret_text;
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class spawner_manager : MonoBehaviour
         ai_2 = GameObject.Find("AI_2").transform.GetChild(0).GetComponent<Ai_Prep>();
         ai_3 = GameObject.Find("AI_3").transform.GetChild(0).GetComponent<Ai_Prep>();
         ai_4 = GameObject.Find("AI_4").transform.GetChild(0).GetComponent<Ai_Prep>();
+		driver_text = GameObject.Find ("DriverText").GetComponent<TextHide> ();
+		turret_text = GameObject.Find ("TurretText").GetComponent<TextHide> ();
         gunner_spawn = GameObject.Find("GUNNER_CAMERA");
     }
 
@@ -136,9 +140,8 @@ public class spawner_manager : MonoBehaviour
         ai_3.BroadCast();
         ai_4.BroadCast();
 
-
-
-
+		driver_text.DelayHide ();
+		turret_text.DelayHide ();
     }
 
 
