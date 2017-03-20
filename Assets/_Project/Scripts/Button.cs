@@ -11,6 +11,7 @@
         Vector3 lowerLim;
         public Fire_Controller turret_controller;
         public Cannon_Fire_CS fire;
+		public bool canFire = true;
 
         public override void StartUsing(GameObject usingObject)
         {
@@ -19,6 +20,7 @@
             turret_controller.OwnerFire();
             objectHighlighter.Highlight(Color.red, 2);
             cooldownHighlight = true;
+			canFire = false;
             StartCoroutine(ExecuteAfterTime(2));
         }
 
@@ -49,6 +51,7 @@
             objectHighlighter.Unhighlight();
             Debug.Log("this is totally working");
             cooldownHighlight = false;
+			canFire = true;
             // Code to execute after the delay
         }
     }
