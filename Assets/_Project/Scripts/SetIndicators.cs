@@ -27,7 +27,6 @@ public class SetIndicators : MonoBehaviour {
         Debug.Log("Checking Angles");
 
         if (angleScript.GetHoriCrankDelta() > 0.1) {
-            //rightRenderer.material.color = Color.red);
             rightRenderer.material.color = Color.red;
         }
 
