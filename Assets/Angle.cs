@@ -23,7 +23,7 @@ public class Angle : MonoBehaviour {
 		if (rightAngle > 180) {
 			rightAngle = rightAngle - 360;
 		}
-		print (rightAngle);
+		//print (rightAngle);
 		myAngle.text = upAngle.ToString () + "    " + rightAngle.ToString ();
 
 	}

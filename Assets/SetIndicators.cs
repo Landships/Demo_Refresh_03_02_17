@@ -24,7 +24,7 @@ public class SetIndicators : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        Debug.Log("Checking Angles");
+        //Debug.Log("Checking Angles");
 
         if (angleScript.GetHoriCrankDelta() > 0.1) {
             //rightRenderer.material.color = Color.red);
