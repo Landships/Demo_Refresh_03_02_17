@@ -6,23 +6,24 @@ public class Angle : MonoBehaviour {
 	Text myAngle;
 	private int upAngle;
 	private int rightAngle;
-	GameObject myBarral;
+	public GameObject myBarral;
+	public GameObject myBarralv;
 	// Use this for initialization
 	void Start () {
 		myAngle = GetComponent<Text>();
-		myBarral = GameObject.Find ("Barrel_Base");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		upAngle = - (int) myBarral.GetComponent<Transform> ().localEulerAngles.x;
-		rightAngle = (int) myBarral.GetComponent<Transform> ().localEulerAngles.y;
+		upAngle = - (int) myBarralv.GetComponent<Transform> ().localEulerAngles.x % 360;
+		rightAngle = (int) myBarral.GetComponent<Transform> ().localEulerAngles.y % 360;
 		if (upAngle < -250) {
 			upAngle = upAngle + 360;
 		}
-		if (rightAngle > 250) {
+		if (rightAngle > 180) {
 			rightAngle = rightAngle - 360;
 		}
+		print (rightAngle);
 		myAngle.text = upAngle.ToString () + "    " + rightAngle.ToString ();
 
 	}
