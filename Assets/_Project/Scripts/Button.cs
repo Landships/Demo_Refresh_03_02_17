@@ -25,6 +25,9 @@
         }
 
 
+		public bool ReadyFire() {
+			return canFire;
+		}
 
         protected override void Start()
         {

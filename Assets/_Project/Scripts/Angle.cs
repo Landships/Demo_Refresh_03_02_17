@@ -12,7 +12,7 @@ public class Angle : MonoBehaviour {
 	void Start () {
 		myAngle = GetComponent<Text>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		upAngle = - (int) myBarralv.GetComponent<Transform> ().localEulerAngles.x % 360;
@@ -23,8 +23,7 @@ public class Angle : MonoBehaviour {
 		if (rightAngle > 180) {
 			rightAngle = rightAngle - 360;
 		}
-		//print (rightAngle);
-		myAngle.text = upAngle.ToString () + "    " + rightAngle.ToString ();
+		myAngle.text = upAngle.ToString () + "°     " + rightAngle.ToString () + "°";
 
 	}
 }
