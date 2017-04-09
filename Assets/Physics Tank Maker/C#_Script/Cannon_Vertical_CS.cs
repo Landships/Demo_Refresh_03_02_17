@@ -18,7 +18,7 @@ public class Cannon_Vertical_CS : MonoBehaviour
 
     public float Temp_Vertical; // Referred to from "Sound_Control_CS".
 
-
+    public GameObject verticalRotatingModel; // The turret image for the UI that rotates to match the real vertical turret angle
 
     bool Tracking_Flag = false;
     bool Moving_Flag = false;
@@ -268,6 +268,8 @@ public class Cannon_Vertical_CS : MonoBehaviour
         Current_Angle += Speed_Mag * Temp_Vertical * Time.deltaTime;
         Current_Angle = Mathf.Clamp(Current_Angle, Max_Elevation, Max_Depression);
         This_Transform.localRotation = Quaternion.Euler(new Vector3(Current_Angle, 0.0f, 0.0f));
+
+        updateVerticalModelAngle();
     }
 
     void Rotate_In_FixedUpdate()
@@ -275,6 +277,8 @@ public class Cannon_Vertical_CS : MonoBehaviour
         Current_Angle += Speed_Mag * Temp_Vertical * Time.fixedDeltaTime;
         Current_Angle = Mathf.Clamp(Current_Angle, Max_Elevation, Max_Depression);
         This_Transform.localRotation = Quaternion.Euler(new Vector3(Current_Angle, 0.0f, 0.0f));
+
+        updateVerticalModelAngle();
     }
 
     void AI_Input()
@@ -434,5 +438,15 @@ public class Cannon_Vertical_CS : MonoBehaviour
     {
         AI_Script = Temp_Script;
     }
+
+
+    void updateVerticalModelAngle() {
+
+        float UIAngle = verticalRotatingModel.GetComponent<RectTransform>().localEulerAngles.x;
+        verticalRotatingModel.GetComponent<RectTransform>().Rotate(new Vector3(-Current_Angle - UIAngle, 0, 0));
+
+    }
+
+
 
 }

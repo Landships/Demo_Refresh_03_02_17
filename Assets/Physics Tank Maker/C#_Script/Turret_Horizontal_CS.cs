@@ -14,7 +14,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
     public float OpenFire_Angle = 180.0f;
     public GameObject Marker_Prefab;
 
-    public GameObject horizontalRotatingModel; // The turret image for the UI that rotates to match the real turret
+    public GameObject horizontalRotatingModel; // The turret image for the UI that rotates to match the real horizontal turret angle
 
     public bool Fire_Flag = false; // Referred to from "Cannon_Vertical".
     public Vector3 Target_Pos; // Referred to from "Cannon_Vertical".
@@ -427,7 +427,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
             }
             This_Transform.localRotation = Quaternion.Euler(new Vector3(0.0f, Current_Angle, 0.0f));
 
-            updateModelAngle();
+            updateHorizontalModelAngle();
         }
     }
 
@@ -446,7 +446,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
             }
             This_Transform.localRotation = Quaternion.Euler(new Vector3(0.0f, Current_Angle, 0.0f));
 
-            updateModelAngle();
+            updateHorizontalModelAngle();
         }
     }
 
@@ -534,7 +534,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
     }
 
 
-    void updateModelAngle() {
+    void updateHorizontalModelAngle() {
 
         float UIAngle = horizontalRotatingModel.GetComponent<RectTransform>().localEulerAngles.z;
         horizontalRotatingModel.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -Current_Angle - UIAngle));
