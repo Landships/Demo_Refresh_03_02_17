@@ -442,8 +442,10 @@ public class Cannon_Vertical_CS : MonoBehaviour
 
     void updateVerticalModelAngle() {
 
-        float UIAngle = verticalRotatingModel.GetComponent<RectTransform>().localEulerAngles.x;
-        verticalRotatingModel.GetComponent<RectTransform>().Rotate(new Vector3(-Current_Angle - UIAngle, 0, 0));
+        Debug.Log("updateVerticalModelAngle called");
+
+        float UIAngle = verticalRotatingModel.GetComponent<RectTransform>().localEulerAngles.z;
+        verticalRotatingModel.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, Current_Angle - UIAngle));
 
     }
 
