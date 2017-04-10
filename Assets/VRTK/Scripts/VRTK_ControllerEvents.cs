@@ -306,6 +306,8 @@ namespace VRTK
         private Vector3 controllerVelocity = Vector3.zero;
         private Vector3 controllerAngularVelocity = Vector3.zero;
 
+        private GameObject rig;
+
         public virtual void OnTriggerPressed(ControllerInteractionEventArgs e)
         {
             if (TriggerPressed != null)
@@ -663,6 +665,7 @@ namespace VRTK
         private void Awake()
         {
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            rig = GameObject.FindGameObjectWithTag("CameraRig");
         }
 
         private void OnEnable()
@@ -960,6 +963,14 @@ namespace VRTK
             //Grip
             if (VRTK_SDK_Bridge.IsGripPressedDownOnIndex(controllerIndex))
             {
+                if (controllerIndex == 3)
+                {
+                    rig.transform.position = new Vector3(rig.transform.position.x, rig.transform.position.y + 0.05f, rig.transform.position.z);
+                }
+                if (controllerIndex == 4)
+                {
+                    rig.transform.position = new Vector3(rig.transform.position.x, rig.transform.position.y - 0.05f, rig.transform.position.z);
+                }
                 OnGripPressed(SetButtonEvent(ref gripPressed, true, 1f));
                 EmitAlias(ButtonAlias.Grip, true, 1f, ref gripPressed);
             }
