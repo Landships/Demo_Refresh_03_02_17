@@ -79,7 +79,7 @@ public class network_manager : MonoBehaviour
 
     void Start()
     {
-        if (ChangeIp.ipAddress == "")
+        if (ChangeIp.ipAddress == "host")
         {
             is_host = true;
         }
@@ -96,10 +96,10 @@ public class network_manager : MonoBehaviour
         manager_script = custom_network_manager.GetComponent<Canvas_Manager>();
         spawn_man = custom_network_manager.GetComponent<spawner_manager>();
 
-        is_host = manager_script.get_host_status();
-        Debug.Log(manager_script.get_host_status().ToString());
+        //is_host = manager_script.get_host_status();
+        //Debug.Log(manager_script.get_host_status().ToString());
         //server_ip = manager_script.get_address();
-        server_ip = manager_script.get_inserted_ip();
+        //server_ip = manager_script.get_inserted_ip();
 
         if (is_host)
         {
