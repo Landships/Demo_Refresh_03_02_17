@@ -602,17 +602,18 @@ public class network_manager : MonoBehaviour
         int values_amount = 0;
         float[] values_3 = new float[3];
         float[] value = new float[1];
-        float[] value_ai = new float[32];
+        float[] values_7 = new float[7];
+        float[] value_ai = new float[40];
 
 
         switch (object_case) {
             case 1: // Left Hand
                 Buffer.BlockCopy(server_to_client_data_large, 3, values_3, 0, 28);
-                values_amount = 3;
+                values_amount = 7;
                 break;
             case 2: // Right Hand
                 Buffer.BlockCopy(server_to_client_data_large, 31, values_3, 0, 28);
-                values_amount = 3;
+                values_amount = 7;
                 break;
             case 3: // Hull Position
                 Buffer.BlockCopy(server_to_client_data_large, 59, values_3, 0, 12);
@@ -669,6 +670,7 @@ public class network_manager : MonoBehaviour
         }
         switch(values_amount)
         {
+            case 7: return values_7;
             case 1: return value;
             case 3: return values_3;
             case 32: return value_ai;
@@ -685,6 +687,7 @@ public class network_manager : MonoBehaviour
 
         int values_amount = 0;
         float[] values_3 = new float[3];
+        float[] values_7 = new float[7];
         float[] value = new float[1];
       
 
@@ -692,11 +695,11 @@ public class network_manager : MonoBehaviour
             {
                 case 1: // Left Hand
                     Buffer.BlockCopy(server_data_from_client, 0, values_3, 0, 28);
-                    values_amount = 3;
+                    values_amount = 7;
                     break;
                 case 2: // Right Hand
                     Buffer.BlockCopy(server_data_from_client, 28, values_3, 0, 28);
-                    values_amount = 3;
+                    values_amount = 7;
                     break;
                 case 3: // Hull Position
                     Buffer.BlockCopy(server_data_from_client, 56, values_3, 0, 12);
@@ -735,15 +738,19 @@ public class network_manager : MonoBehaviour
                     values_amount = 1;
                     break;
             }
-        if(values_amount == 1) 
+
+        if (values_amount == 7) 
         {
-            return value;
+            return values_7;
         } 
-        else
+        else if (values_amount == 3)
         {
             return values_3;
         }
-
+        else
+        {
+            return value;
+        }
     }
 
 
