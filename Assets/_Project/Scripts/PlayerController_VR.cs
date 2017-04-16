@@ -184,17 +184,17 @@ public class PlayerController_VR : MonoBehaviour {
 
     // The client get its values/inputs to send to the server
     void client_send_values() {
-        float[] left_controller_values = { left_controller.transform.position.x,
-                                           left_controller.transform.position.y,
-                                           left_controller.transform.position.z,
+        float[] left_controller_values = { left_controller.transform.localPosition.x,
+                                           left_controller.transform.localPosition.y,
+                                           left_controller.transform.localPosition.z,
                                            left_controller.transform.rotation.eulerAngles.x,
                                            left_controller.transform.rotation.eulerAngles.y,
                                            left_controller.transform.rotation.eulerAngles.z,
                                            left_script.currentBlend };
 
-        float[] right_controller_values = { right_controller.transform.position.x,
-                                            right_controller.transform.position.y,
-                                            right_controller.transform.position.z,
+        float[] right_controller_values = { right_controller.transform.localPosition.x,
+                                            right_controller.transform.localPosition.y,
+                                            right_controller.transform.localPosition.z,
                                             right_controller.transform.rotation.eulerAngles.x,
                                             right_controller.transform.rotation.eulerAngles.y,
                                             right_controller.transform.rotation.eulerAngles.z,
@@ -211,17 +211,17 @@ public class PlayerController_VR : MonoBehaviour {
     // Server Updates the server larger buffer it is going to send
     public void server_get_values_to_send() {
 
-        float[] left_controller_values = { left_controller.transform.position.x,
-                                           left_controller.transform.position.y,
-                                           left_controller.transform.position.z,
+        float[] left_controller_values = { left_controller.transform.localPosition.x,
+                                           left_controller.transform.localPosition.y,
+                                           left_controller.transform.localPosition.z,
                                            left_controller.transform.rotation.eulerAngles.x,
                                            left_controller.transform.rotation.eulerAngles.y,
                                            left_controller.transform.rotation.eulerAngles.z,
                                            left_script.currentBlend };
 
-        float[] right_controller_values = { right_controller.transform.position.x,
-                                            right_controller.transform.position.y,
-                                            right_controller.transform.position.z,
+        float[] right_controller_values = { right_controller.transform.localPosition.x,
+                                            right_controller.transform.localPosition.y,
+                                            right_controller.transform.localPosition.z,
                                             right_controller.transform.rotation.eulerAngles.x,
                                             right_controller.transform.rotation.eulerAngles.y,
                                             right_controller.transform.rotation.eulerAngles.z,

@@ -135,6 +135,9 @@ public class spawner_manager : MonoBehaviour
         {
             camera_rig.transform.parent = gunner_spawn.transform;
             camera_rig.transform.position = gunner_spawn.transform.position;
+            vr_player.transform.parent = camera_rig.transform.parent;
+            vr_player.transform.position = camera_rig.transform.position;
+            vr_player.transform.rotation = camera_rig.transform.rotation;
 
         }
 
