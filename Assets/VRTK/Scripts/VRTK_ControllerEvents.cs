@@ -300,6 +300,7 @@ namespace VRTK
         public event ControllerInteractionEventHandler ControllerDisabled;
 
         private uint controllerIndex;
+        private uint hand = 0;
         private Vector2 touchpadAxis = Vector2.zero;
         private Vector2 triggerAxis = Vector2.zero;
         private float hairTriggerDelta;
@@ -780,6 +781,10 @@ namespace VRTK
         {
             uint tmpControllerIndex = 0;
             var trackedObject = VRTK_DeviceFinder.TrackedObjectOfGameObject(gameObject, out tmpControllerIndex);
+            if (VRTK_DeviceFinder.GetControllerLeftHand() != gameObject)
+            {
+                hand = 1;
+            }
             if (tmpControllerIndex > 0 && tmpControllerIndex < uint.MaxValue && tmpControllerIndex != controllerIndex)
             {
                 RemoveControllerIndexFromCache();
@@ -963,11 +968,12 @@ namespace VRTK
             //Grip
             if (VRTK_SDK_Bridge.IsGripPressedDownOnIndex(controllerIndex))
             {
-                if (controllerIndex == 3)
+                Debug.Log("hand: " + hand);
+                if (hand == 0)
                 {
                     rig.transform.position = new Vector3(rig.transform.position.x, rig.transform.position.y + 0.05f, rig.transform.position.z);
                 }
-                if (controllerIndex == 4)
+                if (hand == 1)
                 {
                     rig.transform.position = new Vector3(rig.transform.position.x, rig.transform.position.y - 0.05f, rig.transform.position.z);
                 }
