@@ -21,12 +21,7 @@ public class handScript : MonoBehaviour {
         {
             handAnimator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
             currentBlend = 1;
-            //Debug.Log("HELO");
         }
-        //else if (touch_events.GetTouchedObject() != null)
-        //{
-            //handAnimator.SetFloat("handBlend", 0.5f, 0.1f, Time.deltaTime);
-        //}
         else
         {
             handAnimator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
@@ -34,9 +29,6 @@ public class handScript : MonoBehaviour {
         }
 
     }
-
-
-
 
     public void hapticFeedBack()
     {

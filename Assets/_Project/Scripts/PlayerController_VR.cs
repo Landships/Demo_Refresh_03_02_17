@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System;
 
 
-public class PlayerController_VR : MonoBehaviour
-{
+public class PlayerController_VR : MonoBehaviour {
     public byte owner;
     byte current_player;
 
@@ -65,13 +64,11 @@ public class PlayerController_VR : MonoBehaviour
     int frame_interval = 5;
 
 
-    void Start()
-    {
+    void Start() {
         n_manager = GameObject.Find("Custom Network Manager(Clone)");
         n_manager_script = n_manager.GetComponent<network_manager>();
         current_player = (byte)(n_manager_script.client_players_amount);
-        if (owner == current_player)
-        {
+        if (owner == current_player) {
             left_hand.SetActive(false);
             right_hand.SetActive(false);
         }
@@ -81,14 +78,12 @@ public class PlayerController_VR : MonoBehaviour
 
     }
 
-    public void Setup()
-    {
+    public void Setup() {
         left_script = left_controller.GetComponent<handScript>();
         right_script = right_controller.GetComponent<handScript>();
     }
 
-    void Update()
-    {
+    void Update() {
         started = n_manager_script.started;
         ready = n_manager_script.game_ready;
 
@@ -98,80 +93,57 @@ public class PlayerController_VR : MonoBehaviour
 
         update_world_state();
 
-        if (owner == current_player)
-        {
-            if (current_player == 1)
-            {
+        if (owner == current_player) {
+            if (current_player == 1) {
                 server_get_values_to_send();
-            }
-            else
-            {
+            } else {
                 client_send_values();
             }
-        }
-
-        else
-        {
-            if (current_player == 1)
-            {
+        } else {
+            if (current_player == 1) {
                 server_get_client_hands();
-            
-            }
-            else
-            {
+
+            } else {
                 client_update_values();
             }
         }
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         //update_world_state();
     }
 
 
-//if not owner and not host, do nothing, else:
-void update_world_state()
-    {
-        if (current_player == owner)
-        {
+    //if not owner and not host, do nothing, else:
+    void update_world_state() {
+        if (current_player == owner) {
             Read_Camera_Rig();
-        }
-        else
-        {
+        } else {
             left_hand.transform.position = Vector3.Lerp(left_hand.transform.position, new Vector3(left_x, left_y, left_z), 0.1f);
             right_hand.transform.position = Vector3.Lerp(right_hand.transform.position, new Vector3(right_x, right_y, right_z), 0.1f);
             left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
             right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
-            if (left_blend == 1)
-            {
+            if (left_blend == 1) {
                 left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
-            }
-            else
-            {
+            } else {
                 left_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
             }
-            if (right_blend == 1)
-            {
+            if (right_blend == 1) {
                 right_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
-            }
-            else
-            {
+            } else {
                 right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
             }
 
         }
     }
 
-    void Read_Camera_Rig()
-    {
+    void Read_Camera_Rig() {
         /*left_hand.transform.position = left_controller.transform.position;
         right_hand.transform.position = right_controller.transform.position;
         left_hand.transform.rotation = left_controller.transform.rotation;
         right_hand.transform.rotation = right_controller.transform.rotation;
         left_blend = left_script.currentBlend;
         right_blend = right_script.currentBlend;
-
         if (left_blend == 1)
         {
             left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
@@ -191,8 +163,7 @@ void update_world_state()
 
     }
 
-    public byte get_client_player_number()
-    {
+    public byte get_client_player_number() {
         return current_player;
     }
 
@@ -216,22 +187,23 @@ void update_world_state()
         float[] left_controller_values = { left_controller.transform.position.x,
                                            left_controller.transform.position.y,
                                            left_controller.transform.position.z,
-                                           left_controller.transform.localRotation.x,
-                                           left_controller.transform.localRotation.y,
-                                           left_controller.transform.localRotation.z,
+                                           left_controller.transform.rotation.x,
+                                           left_controller.transform.rotation.y,
+                                           left_controller.transform.rotation.z,
                                            left_script.currentBlend };
 
         float[] right_controller_values = { right_controller.transform.position.x,
                                             right_controller.transform.position.y,
                                             right_controller.transform.position.z,
-                                            left_controller.transform.localRotation.x,
-                                            left_controller.transform.localRotation.y,
-                                            left_controller.transform.localRotation.z,
-                                            left_script.currentBlend };
+                                            right_controller.transform.rotation.x,
+                                            right_controller.transform.rotation.y,
+                                            right_controller.transform.rotation.z,
+                                            right_script.currentBlend };
 
         n_manager_script.send_from_client(1, left_controller_values);
         n_manager_script.send_from_client(2, right_controller_values);
 
+        Debug.Log("sending left controller vector3: " + left_controller_values[0] + ", " + left_controller_values[1] + ", " + left_controller_values[2]);
     }
 
 
@@ -242,18 +214,18 @@ void update_world_state()
         float[] left_controller_values = { left_controller.transform.position.x,
                                            left_controller.transform.position.y,
                                            left_controller.transform.position.z,
-                                           left_controller.transform.localRotation.x,
-                                           left_controller.transform.localRotation.y,
-                                           left_controller.transform.localRotation.z,
+                                           left_controller.transform.rotation.x,
+                                           left_controller.transform.rotation.y,
+                                           left_controller.transform.rotation.z,
                                            left_script.currentBlend };
 
         float[] right_controller_values = { right_controller.transform.position.x,
                                             right_controller.transform.position.y,
                                             right_controller.transform.position.z,
-                                            left_controller.transform.localRotation.x,
-                                            left_controller.transform.localRotation.y,
-                                            left_controller.transform.localRotation.z,
-                                            left_script.currentBlend };
+                                            right_controller.transform.rotation.x,
+                                            right_controller.transform.rotation.y,
+                                            right_controller.transform.rotation.z,
+                                            right_script.currentBlend };
 
 
 
@@ -291,9 +263,8 @@ void update_world_state()
 
     }
 
-        // Server Get values from the client buffer, so the client inputs
-    public void server_get_client_hands()
-    {
+    // Server Get values from the client buffer, so the client inputs
+    public void server_get_client_hands() {
         float[] left_controller_values = n_manager_script.server_read_client_buffer(1);
         float[] right_controller_values = n_manager_script.server_read_client_buffer(2);
 
@@ -305,7 +276,7 @@ void update_world_state()
         left_rot_z = left_controller_values[5];
         left_blend = left_controller_values[6];
 
-        Debug.Log("left controller vector3: " + right_x + " " + right_y + " " + right_z);
+        Debug.Log(" receiving left controller vector3: " + left_x + " " + left_y + " " + left_z);
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
