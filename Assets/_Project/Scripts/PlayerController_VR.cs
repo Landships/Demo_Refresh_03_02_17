@@ -13,11 +13,17 @@ public class PlayerController_VR : MonoBehaviour
     byte current_player;
 
     public GameObject camera_rig;
-    public GameObject left_controller;
+    public GameObject left_controller; //camera rig manly hands
     public GameObject right_controller;
 
-    public GameObject left_hand;
+    public GameObject left_hand; //vr hands
     public GameObject right_hand;
+
+    handScript left_script; //camera rig handscript
+    handScript right_script;
+
+    Animator left_animator; //vr hand animator
+    Animator right_animator;
 
     // Client Queue
     int frame = 0;
@@ -29,9 +35,21 @@ public class PlayerController_VR : MonoBehaviour
     float left_y;
     float left_z;
 
+    float left_rot_x;
+    float left_rot_y;
+    float left_rot_z;
+
+    float left_blend;
+
     float right_x;
     float right_y;
     float right_z;
+
+    float right_rot_x;
+    float right_rot_y;
+    float right_rot_z;
+
+    float right_blend;
 
 
     //trigger
@@ -54,11 +72,19 @@ public class PlayerController_VR : MonoBehaviour
         current_player = (byte)(n_manager_script.client_players_amount);
         if (owner == current_player)
         {
-            left_hand.GetComponent<MeshRenderer>().enabled = false;
-            right_hand.GetComponent<MeshRenderer>().enabled = false;
+            left_hand.SetActive(false);
+            right_hand.SetActive(false);
         }
-        //client_update_values(n_manager_script.server_to_client_data_large);
-        //server_get_values_to_send();
+
+        left_animator = left_hand.GetComponent<Animator>();
+        right_animator = right_hand.GetComponent<Animator>();
+
+    }
+
+    public void Setup()
+    {
+        left_script = left_controller.GetComponent<handScript>();
+        right_script = right_controller.GetComponent<handScript>();
     }
 
     void Update()
@@ -115,16 +141,53 @@ void update_world_state()
         {
             left_hand.transform.position = Vector3.Lerp(left_hand.transform.position, new Vector3(left_x, left_y, left_z), 0.1f);
             right_hand.transform.position = Vector3.Lerp(right_hand.transform.position, new Vector3(right_x, right_y, right_z), 0.1f);
+            left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
+            right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
+            if (left_blend == 1)
+            {
+                left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
+            }
+            else
+            {
+                left_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
+            }
+            if (right_blend == 1)
+            {
+                right_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
+            }
+            else
+            {
+                right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
+            }
 
-            //left_hand.transform.position = new Vector3(left_x, left_y, left_z);
-            //right_hand.transform.position = new Vector3(right_x, right_y, right_z);
         }
     }
 
     void Read_Camera_Rig()
     {
-        left_hand.transform.position = left_controller.transform.position;
+        /*left_hand.transform.position = left_controller.transform.position;
         right_hand.transform.position = right_controller.transform.position;
+        left_hand.transform.rotation = left_controller.transform.rotation;
+        right_hand.transform.rotation = right_controller.transform.rotation;
+        left_blend = left_script.currentBlend;
+        right_blend = right_script.currentBlend;
+
+        if (left_blend == 1)
+        {
+            left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            left_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
+        }
+        if (right_blend == 1)
+        {
+            right_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
+        }*/
 
     }
 
@@ -152,10 +215,19 @@ void update_world_state()
     void client_send_values() {
         float[] left_controller_values = { left_controller.transform.position.x,
                                            left_controller.transform.position.y,
-                                           left_controller.transform.position.z };
+                                           left_controller.transform.position.z,
+                                           left_controller.transform.localRotation.x,
+                                           left_controller.transform.localRotation.y,
+                                           left_controller.transform.localRotation.z,
+                                           left_script.currentBlend };
+
         float[] right_controller_values = { right_controller.transform.position.x,
                                             right_controller.transform.position.y,
-                                            right_controller.transform.position.z };
+                                            right_controller.transform.position.z,
+                                            left_controller.transform.localRotation.x,
+                                            left_controller.transform.localRotation.y,
+                                            left_controller.transform.localRotation.z,
+                                            left_script.currentBlend };
 
         n_manager_script.send_from_client(1, left_controller_values);
         n_manager_script.send_from_client(2, right_controller_values);
@@ -169,10 +241,19 @@ void update_world_state()
 
         float[] left_controller_values = { left_controller.transform.position.x,
                                            left_controller.transform.position.y,
-                                           left_controller.transform.position.z };
+                                           left_controller.transform.position.z,
+                                           left_controller.transform.localRotation.x,
+                                           left_controller.transform.localRotation.y,
+                                           left_controller.transform.localRotation.z,
+                                           left_script.currentBlend };
+
         float[] right_controller_values = { right_controller.transform.position.x,
                                             right_controller.transform.position.y,
-                                            right_controller.transform.position.z };
+                                            right_controller.transform.position.z,
+                                            left_controller.transform.localRotation.x,
+                                            left_controller.transform.localRotation.y,
+                                            left_controller.transform.localRotation.z,
+                                            left_script.currentBlend };
 
 
 
@@ -193,10 +274,18 @@ void update_world_state()
         left_x = left_controller_values[0];
         left_y = left_controller_values[1];
         left_z = left_controller_values[2];
+        left_rot_x = left_controller_values[3];
+        left_rot_y = left_controller_values[4];
+        left_rot_z = left_controller_values[5];
+        left_blend = left_controller_values[6];
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
         right_z = right_controller_values[2];
+        right_rot_x = right_controller_values[3];
+        right_rot_y = right_controller_values[4];
+        right_rot_z = right_controller_values[5];
+        right_blend = right_controller_values[6];
 
     }
 
@@ -209,12 +298,20 @@ void update_world_state()
         left_x = left_controller_values[0];
         left_y = left_controller_values[1];
         left_z = left_controller_values[2];
+        left_rot_x = left_controller_values[3];
+        left_rot_y = left_controller_values[4];
+        left_rot_z = left_controller_values[5];
+        left_blend = left_controller_values[6];
 
         //Debug.Log("left controller vector3: " + right_x + " " + right_y + " " + right_z);
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
         right_z = right_controller_values[2];
+        right_rot_x = right_controller_values[3];
+        right_rot_y = right_controller_values[4];
+        right_rot_z = right_controller_values[5];
+        right_blend = right_controller_values[6];
     }
 
 

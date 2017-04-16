@@ -35,6 +35,8 @@ void update_world_state()
     {
         left_hand.transform.position = left_controller.transform.position;
         right_hand.transform.position = right_controller.transform.position;
+        left_hand.transform.localRotation = left_controller.transform.localRotation;
+        right_hand.transform.localRotation = right_controller.transform.localRotation;
     }
 
     public byte get_client_player_number()
