@@ -10,7 +10,6 @@
         Vector3 upperLim;
         Vector3 lowerLim;
         public Fire_Controller turret_controller;
-        public Cannon_Fire_CS fire;
 		public bool canFire = true;
 
         public override void StartUsing(GameObject usingObject)
