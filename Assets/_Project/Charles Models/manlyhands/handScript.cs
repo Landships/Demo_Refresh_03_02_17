@@ -3,7 +3,7 @@ using System.Collections;
 
 public class handScript : MonoBehaviour {
     private Animator handAnimator;
-    private float currentBlend = 0.0f;
+    public float currentBlend = 0;
     VRTK.VRTK_ControllerEvents controller_events;
     VRTK.VRTK_InteractTouch touch_events;
 
@@ -20,21 +20,15 @@ public class handScript : MonoBehaviour {
         if (controller_events.triggerPressed)
         {
             handAnimator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
-            //Debug.Log("HELO");
+            currentBlend = 1;
         }
-        //else if (touch_events.GetTouchedObject() != null)
-        //{
-            //handAnimator.SetFloat("handBlend", 0.5f, 0.1f, Time.deltaTime);
-        //}
         else
         {
             handAnimator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
+            currentBlend = 0;
         }
 
     }
-
-
-
 
     public void hapticFeedBack()
     {
