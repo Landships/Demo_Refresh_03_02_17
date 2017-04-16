@@ -187,23 +187,23 @@ public class PlayerController_VR : MonoBehaviour {
         float[] left_controller_values = { left_controller.transform.position.x,
                                            left_controller.transform.position.y,
                                            left_controller.transform.position.z,
-                                           left_controller.transform.rotation.x,
-                                           left_controller.transform.rotation.y,
-                                           left_controller.transform.rotation.z,
+                                           left_controller.transform.rotation.eulerAngles.x,
+                                           left_controller.transform.rotation.eulerAngles.y,
+                                           left_controller.transform.rotation.eulerAngles.z,
                                            left_script.currentBlend };
 
         float[] right_controller_values = { right_controller.transform.position.x,
                                             right_controller.transform.position.y,
                                             right_controller.transform.position.z,
-                                            right_controller.transform.rotation.x,
-                                            right_controller.transform.rotation.y,
-                                            right_controller.transform.rotation.z,
+                                            right_controller.transform.rotation.eulerAngles.x,
+                                            right_controller.transform.rotation.eulerAngles.y,
+                                            right_controller.transform.rotation.eulerAngles.z,
                                             right_script.currentBlend };
 
         n_manager_script.send_from_client(1, left_controller_values);
         n_manager_script.send_from_client(2, right_controller_values);
 
-        Debug.Log("sending left controller vector3: " + left_controller_values[0] + ", " + left_controller_values[1] + ", " + left_controller_values[2]);
+        Debug.Log("sending left controller vector3: " + left_controller_values[3] + ", " + left_controller_values[4] + ", " + left_controller_values[5]);
     }
 
 
@@ -214,17 +214,17 @@ public class PlayerController_VR : MonoBehaviour {
         float[] left_controller_values = { left_controller.transform.position.x,
                                            left_controller.transform.position.y,
                                            left_controller.transform.position.z,
-                                           left_controller.transform.rotation.x,
-                                           left_controller.transform.rotation.y,
-                                           left_controller.transform.rotation.z,
+                                           left_controller.transform.rotation.eulerAngles.x,
+                                           left_controller.transform.rotation.eulerAngles.y,
+                                           left_controller.transform.rotation.eulerAngles.z,
                                            left_script.currentBlend };
 
         float[] right_controller_values = { right_controller.transform.position.x,
                                             right_controller.transform.position.y,
                                             right_controller.transform.position.z,
-                                            right_controller.transform.rotation.x,
-                                            right_controller.transform.rotation.y,
-                                            right_controller.transform.rotation.z,
+                                            right_controller.transform.rotation.eulerAngles.x,
+                                            right_controller.transform.rotation.eulerAngles.y,
+                                            right_controller.transform.rotation.eulerAngles.z,
                                             right_script.currentBlend };
 
 
@@ -276,7 +276,7 @@ public class PlayerController_VR : MonoBehaviour {
         left_rot_z = left_controller_values[5];
         left_blend = left_controller_values[6];
 
-        Debug.Log(" receiving left controller vector3: " + left_x + " " + left_y + " " + left_z);
+        Debug.Log(" receiving left controller vector3: " + left_rot_x + " " + left_rot_y + " " + left_rot_z);
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
