@@ -79,7 +79,7 @@ public class network_manager : MonoBehaviour
 
     void Start()
     {
-        if (ChangeIp.ipAddress == "-1")
+        if (ChangeIp.ipAddress == "")
         {
             is_host = true;
         }
@@ -107,13 +107,15 @@ public class network_manager : MonoBehaviour
             server_players_amount++;
             client_players_amount++;
 
-            //join("Player 1");
+            Debug.Log("SERVER");
             server_setup();
 
         }
 
         if (!is_host )
         {
+            Debug.Log("CLIENT");
+
             client_setup();
             connect_to_server(ChangeIp.ipAddress);
             Debug.Log(ChangeIp.ipAddress.ToString());
