@@ -268,6 +268,8 @@ void update_world_state()
     // Client get values from the server buffer
     void client_update_values() {
 
+        //Debug.Log("Here");
+
         float[] left_controller_values = n_manager_script.client_read_server_buffer(1);
         float[] right_controller_values = n_manager_script.client_read_server_buffer(2);
 

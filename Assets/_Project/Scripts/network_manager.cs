@@ -739,17 +739,12 @@ public class network_manager : MonoBehaviour
                     break;
             }
 
-        if (values_amount == 7) 
+        switch (values_amount)
         {
-            return values_7;
-        } 
-        else if (values_amount == 3)
-        {
-            return values_3;
-        }
-        else
-        {
-            return value;
+            case 7: return values_7;
+            case 1: return value;
+            case 3: return values_3;
+            default: return value;
         }
     }
 
