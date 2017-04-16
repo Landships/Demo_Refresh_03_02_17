@@ -608,11 +608,11 @@ public class network_manager : MonoBehaviour
 
         switch (object_case) {
             case 1: // Left Hand
-                Buffer.BlockCopy(server_to_client_data_large, 3, values_3, 0, 28);
+                Buffer.BlockCopy(server_to_client_data_large, 3, values_7, 0, 28);
                 values_amount = 7;
                 break;
             case 2: // Right Hand
-                Buffer.BlockCopy(server_to_client_data_large, 31, values_3, 0, 28);
+                Buffer.BlockCopy(server_to_client_data_large, 31, values_7, 0, 28);
                 values_amount = 7;
                 break;
             case 3: // Hull Position
@@ -694,11 +694,11 @@ public class network_manager : MonoBehaviour
         switch (object_case) 
             {
                 case 1: // Left Hand
-                    Buffer.BlockCopy(server_data_from_client, 0, values_3, 0, 28);
+                    Buffer.BlockCopy(server_data_from_client, 0, values_7, 0, 28);
                     values_amount = 7;
                     break;
                 case 2: // Right Hand
-                    Buffer.BlockCopy(server_data_from_client, 28, values_3, 0, 28);
+                    Buffer.BlockCopy(server_data_from_client, 28, values_7, 0, 28);
                     values_amount = 7;
                     break;
                 case 3: // Hull Position
