@@ -305,7 +305,7 @@ void update_world_state()
         left_rot_z = left_controller_values[5];
         left_blend = left_controller_values[6];
 
-        //Debug.Log("left controller vector3: " + right_x + " " + right_y + " " + right_z);
+        Debug.Log("left controller vector3: " + right_x + " " + right_y + " " + right_z);
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
