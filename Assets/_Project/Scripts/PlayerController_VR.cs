@@ -69,18 +69,18 @@ public class PlayerController_VR : MonoBehaviour {
         n_manager_script = n_manager.GetComponent<network_manager>();
         current_player = (byte)(n_manager_script.client_players_amount);
         if (owner == current_player) {
-            left_hand.SetActive(false);
-            right_hand.SetActive(false);
+            //left_hand.SetActive(false);
+            //right_hand.SetActive(false);
         }
 
-        left_animator = left_hand.GetComponent<Animator>();
-        right_animator = right_hand.GetComponent<Animator>();
+        left_animator = left_hand.transform.GetChild(0).GetComponent<Animator>();
+        right_animator = right_hand.transform.GetChild(0).GetComponent<Animator>();
 
     }
 
     public void Setup() {
-        left_script = left_controller.GetComponent<handScript>();
-        right_script = right_controller.GetComponent<handScript>();
+        left_script = left_controller.transform.GetChild(1).GetComponent<handScript>();
+        right_script = right_controller.transform.GetChild(1).GetComponent<handScript>();
     }
 
     void Update() {
@@ -119,8 +119,8 @@ public class PlayerController_VR : MonoBehaviour {
         if (current_player == owner) {
             Read_Camera_Rig();
         } else {
-            left_hand.transform.position = Vector3.Lerp(left_hand.transform.position, new Vector3(left_x, left_y, left_z), 0.1f);
-            right_hand.transform.position = Vector3.Lerp(right_hand.transform.position, new Vector3(right_x, right_y, right_z), 0.1f);
+            left_hand.transform.localPosition = Vector3.Lerp(left_hand.transform.localPosition, new Vector3(left_x, left_y, left_z), 0.1f);
+            right_hand.transform.localPosition = Vector3.Lerp(right_hand.transform.localPosition, new Vector3(right_x, right_y, right_z), 0.1f);
             left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
             right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
             if (left_blend == 1) {
@@ -138,8 +138,8 @@ public class PlayerController_VR : MonoBehaviour {
     }
 
     void Read_Camera_Rig() {
-        /*left_hand.transform.position = left_controller.transform.position;
-        right_hand.transform.position = right_controller.transform.position;
+        left_hand.transform.localPosition = left_controller.transform.localPosition;
+        right_hand.transform.localPosition = right_controller.transform.localPosition;
         left_hand.transform.rotation = left_controller.transform.rotation;
         right_hand.transform.rotation = right_controller.transform.rotation;
         left_blend = left_script.currentBlend;
@@ -159,7 +159,7 @@ public class PlayerController_VR : MonoBehaviour {
         else
         {
             right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
-        }*/
+        }
 
     }
 
@@ -203,7 +203,7 @@ public class PlayerController_VR : MonoBehaviour {
         n_manager_script.send_from_client(1, left_controller_values);
         n_manager_script.send_from_client(2, right_controller_values);
 
-        Debug.Log("sending left controller vector3: " + left_controller_values[3] + ", " + left_controller_values[4] + ", " + left_controller_values[5]);
+        //Debug.Log("sending left controller vector3: " + left_controller_values[3] + ", " + left_controller_values[4] + ", " + left_controller_values[5]);
     }
 
 
@@ -276,7 +276,7 @@ public class PlayerController_VR : MonoBehaviour {
         left_rot_z = left_controller_values[5];
         left_blend = left_controller_values[6];
 
-        Debug.Log(" receiving left controller vector3: " + left_rot_x + " " + left_rot_y + " " + left_rot_z);
+        //Debug.Log(" receiving left controller vector3: " + left_rot_x + " " + left_rot_y + " " + left_rot_z);
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
