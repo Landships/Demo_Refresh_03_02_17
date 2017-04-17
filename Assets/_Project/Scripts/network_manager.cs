@@ -19,7 +19,7 @@ public class network_manager : MonoBehaviour
     //Network variables
     string server_ip;
     public bool game_ready = false;
-    static byte server_players_amount = 0;
+    byte server_players_amount = 0;
 
     //Server Stuff
     int server_port = 8888;
@@ -104,7 +104,7 @@ public class network_manager : MonoBehaviour
         if (is_host)
         {
             server_client_connection[server_players_amount] = 0;
-            //server_players_amount++;
+            server_players_amount++;
             client_players_amount = 1;
             spawn_man.spawn_four_players(1);
 
