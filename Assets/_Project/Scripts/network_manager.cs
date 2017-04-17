@@ -145,7 +145,7 @@ public class network_manager : MonoBehaviour
         {
             if(no_canvas_start == false)
             {
-                spawn_man.spawn_four_players(1);
+                //spawn_man.spawn_four_players(1);
                 no_canvas_start = true;
             }
             else
@@ -174,7 +174,7 @@ public class network_manager : MonoBehaviour
         {
             if (no_canvas_start == false)
             {
-                spawn_man.spawn_four_players(4);
+                //spawn_man.spawn_four_players(4);
                 no_canvas_start = true;
             }
             else {
