@@ -133,7 +133,7 @@ public class network_manager : MonoBehaviour
         // Client Poll Server
         if (!no_canvas_client_connected && !is_host)
         {
-            connect_to_server(ChangeIp.ipAddress);
+            //connect_to_server(ChangeIp.ipAddress);
             client_lobby_update();
         }
 
@@ -148,6 +148,7 @@ public class network_manager : MonoBehaviour
              {
                 if (frame == 4)
                 {
+                    Debug.Log("client attempt send");
                     client_send_information(); //constant unreliable 
                     frame = 0;
                 }
@@ -155,6 +156,8 @@ public class network_manager : MonoBehaviour
                 {
                     frame++;
                 }
+                Debug.Log("client attempt recieve");
+
                 client_recieve_data(); //only unreliable from server
             }
         }
@@ -173,6 +176,8 @@ public class network_manager : MonoBehaviour
             else {
                 if (frame == 4)
                 {
+                    Debug.Log("server attempt send");
+
                     server_send_large_message_to_client(); //unreliable
                     frame = 0;
                 }
@@ -180,6 +185,8 @@ public class network_manager : MonoBehaviour
                 {
                     frame++;
                 }
+                Debug.Log("server attempt recieve");
+
                 server_recieve_data(); // reliable and unreliable from clients
             }
         }
