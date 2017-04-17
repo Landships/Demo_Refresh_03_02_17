@@ -40,6 +40,10 @@ public class PlayerController_VR : MonoBehaviour {
 
     float left_blend;
 
+    float left_abs_x;
+    float left_abs_y;
+    float left_abs_z;
+
     float right_x;
     float right_y;
     float right_z;
@@ -49,6 +53,10 @@ public class PlayerController_VR : MonoBehaviour {
     float right_rot_z;
 
     float right_blend;
+
+    float right_abs_x;
+    float right_abs_y;
+    float right_abs_z;
 
 
     //trigger
@@ -123,6 +131,13 @@ public class PlayerController_VR : MonoBehaviour {
             right_hand.transform.localPosition = Vector3.Lerp(right_hand.transform.localPosition, new Vector3(right_x, right_y, right_z), 0.1f);
             left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
             right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
+
+            Vector3 left_diff = new Vector3(left_abs_x, left_abs_y, left_abs_z) - left_hand.transform.position;
+            Vector3 right_diff = new Vector3(right_abs_x, right_abs_y, right_abs_z) - right_hand.transform.position;
+
+            left_hand.transform.position = left_hand.transform.position + left_diff;
+            right_hand.transform.position = right_hand.transform.position + right_diff;
+
             if (left_blend == 1) {
                 left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
             } else {
@@ -138,6 +153,7 @@ public class PlayerController_VR : MonoBehaviour {
     }
 
     void Read_Camera_Rig() {
+        /*
         left_hand.transform.localPosition = left_controller.transform.localPosition;
         right_hand.transform.localPosition = right_controller.transform.localPosition;
         left_hand.transform.rotation = left_controller.transform.rotation;
@@ -159,7 +175,7 @@ public class PlayerController_VR : MonoBehaviour {
         else
         {
             right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
-        }
+        }*/
 
     }
 
@@ -190,7 +206,10 @@ public class PlayerController_VR : MonoBehaviour {
                                            left_controller.transform.rotation.eulerAngles.x,
                                            left_controller.transform.rotation.eulerAngles.y,
                                            left_controller.transform.rotation.eulerAngles.z,
-                                           left_script.currentBlend };
+                                           left_script.currentBlend,
+                                           left_controller.transform.position.x,
+                                           left_controller.transform.position.y,
+                                           left_controller.transform.position.z };
 
         float[] right_controller_values = { right_controller.transform.localPosition.x,
                                             right_controller.transform.localPosition.y,
@@ -198,7 +217,10 @@ public class PlayerController_VR : MonoBehaviour {
                                             right_controller.transform.rotation.eulerAngles.x,
                                             right_controller.transform.rotation.eulerAngles.y,
                                             right_controller.transform.rotation.eulerAngles.z,
-                                            right_script.currentBlend };
+                                            right_script.currentBlend,
+                                            right_controller.transform.position.x,
+                                            right_controller.transform.position.y,
+                                            right_controller.transform.position.z };
 
         n_manager_script.send_from_client(1, left_controller_values);
         n_manager_script.send_from_client(2, right_controller_values);
@@ -217,7 +239,10 @@ public class PlayerController_VR : MonoBehaviour {
                                            left_controller.transform.rotation.eulerAngles.x,
                                            left_controller.transform.rotation.eulerAngles.y,
                                            left_controller.transform.rotation.eulerAngles.z,
-                                           left_script.currentBlend };
+                                           left_script.currentBlend,
+                                           left_controller.transform.position.x,
+                                           left_controller.transform.position.y,
+                                           left_controller.transform.position.z };
 
         float[] right_controller_values = { right_controller.transform.localPosition.x,
                                             right_controller.transform.localPosition.y,
@@ -225,7 +250,10 @@ public class PlayerController_VR : MonoBehaviour {
                                             right_controller.transform.rotation.eulerAngles.x,
                                             right_controller.transform.rotation.eulerAngles.y,
                                             right_controller.transform.rotation.eulerAngles.z,
-                                            right_script.currentBlend };
+                                            right_script.currentBlend,
+                                            right_controller.transform.position.x,
+                                            right_controller.transform.position.y,
+                                            right_controller.transform.position.z };
 
 
 
@@ -252,6 +280,9 @@ public class PlayerController_VR : MonoBehaviour {
         left_rot_y = left_controller_values[4];
         left_rot_z = left_controller_values[5];
         left_blend = left_controller_values[6];
+        left_abs_x = left_controller_values[7];
+        left_abs_y = left_controller_values[8];
+        left_abs_z = left_controller_values[9];
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
@@ -260,6 +291,9 @@ public class PlayerController_VR : MonoBehaviour {
         right_rot_y = right_controller_values[4];
         right_rot_z = right_controller_values[5];
         right_blend = right_controller_values[6];
+        right_abs_x = right_controller_values[7];
+        right_abs_y = right_controller_values[8];
+        right_abs_z = right_controller_values[9];
 
     }
 
@@ -275,8 +309,9 @@ public class PlayerController_VR : MonoBehaviour {
         left_rot_y = left_controller_values[4];
         left_rot_z = left_controller_values[5];
         left_blend = left_controller_values[6];
-
-        //Debug.Log(" receiving left controller vector3: " + left_rot_x + " " + left_rot_y + " " + left_rot_z);
+        left_abs_x = left_controller_values[7];
+        left_abs_y = left_controller_values[8];
+        left_abs_z = left_controller_values[9];
 
         right_x = right_controller_values[0];
         right_y = right_controller_values[1];
@@ -285,6 +320,9 @@ public class PlayerController_VR : MonoBehaviour {
         right_rot_y = right_controller_values[4];
         right_rot_z = right_controller_values[5];
         right_blend = right_controller_values[6];
+        right_abs_x = right_controller_values[7];
+        right_abs_y = right_controller_values[8];
+        right_abs_z = right_controller_values[9];
     }
 
 
