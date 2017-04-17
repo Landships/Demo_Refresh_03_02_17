@@ -18,7 +18,7 @@ public class spawner_manager : MonoBehaviour
     static TextHide driver_text;
     static TextHide turret_text;
 
-    void Awake()
+    void Start()
     {
        
         camera_rig = GameObject.Find("[CameraRig]");
