@@ -104,7 +104,7 @@ public class network_manager : MonoBehaviour
         if (is_host)
         {
             server_client_connection[server_players_amount] = 0;
-            server_players_amount++;
+            //server_players_amount++;
             client_players_amount = 1;
             spawn_man.spawn_four_players(1);
 
@@ -161,7 +161,7 @@ public class network_manager : MonoBehaviour
                     frame++;
                 }
                 //Debug.Log("client attempt recieve");
-                Debug.Log("Entering Recieve");
+
                 client_recieve_data(); //only unreliable from server
             }
         }
@@ -180,7 +180,7 @@ public class network_manager : MonoBehaviour
             else {
                 if (frame == 4)
                 {
-                    Debug.Log("server attempt send");
+                    //Debug.Log("server attempt send");
 
                     server_send_large_message_to_client(); //unreliable
                     frame = 0;
@@ -994,11 +994,9 @@ public class network_manager : MonoBehaviour
 
         switch (networkEvent) {
             case NetworkEventType.Nothing:
-                Debug.Log("No Message");
+                //Debug.Log("No Message");
                 break;
             case NetworkEventType.ConnectEvent:
-                Debug.Log("Random Connection");
-
                 break;
             case NetworkEventType.DataEvent:
                 Debug.Log("Client Recieved Data");
