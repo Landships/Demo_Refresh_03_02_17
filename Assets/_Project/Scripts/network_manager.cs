@@ -106,7 +106,7 @@ public class network_manager : MonoBehaviour
             server_client_connection[server_players_amount] = 0;
             //server_players_amount++;
             client_players_amount = 1;
-            spawn_man.spawn_player(1, 1);
+            spawn_man.spawn_four_players(1);
 
             Debug.Log("SERVER");
             server_setup();
@@ -117,7 +117,8 @@ public class network_manager : MonoBehaviour
         {
             Debug.Log("CLIENT");
             client_players_amount = 2;
-            spawn_man.spawn_player(2, 2);
+            spawn_man.spawn_four_players(2);
+
 
             client_setup();
             connect_to_server(ChangeIp.ipAddress);

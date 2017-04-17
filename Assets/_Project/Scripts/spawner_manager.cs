@@ -40,9 +40,9 @@ public class spawner_manager : MonoBehaviour
 
         //Debug.Log("I will spawn " + " players");
         byte tally = 1;
-        while (tally <= num_players)
+        while (tally <= 2)
         {
-            spawn_player(tally, tally);
+            spawn_player(num_players, tally);
             tally++;
         }
 
@@ -109,11 +109,11 @@ public class spawner_manager : MonoBehaviour
 
         GameObject n_manager = GameObject.Find("Custom Network Manager(Clone)");
         network_manager n_manager_script = n_manager.GetComponent<network_manager>();
-        byte current_player = (byte)(n_manager_script.client_players_amount);
+        //byte current_player = (byte)(n_manager_script.client_players_amount);
 
 
         // ADD OWNER TODO!!!!!!!!!!!!!!!!!!
-        if (owner == 1)
+        if (number == 1)
         {
             //camera_rig.transform.position = new Vector3(x, y, z);
             vr_player.gameObject.GetComponent<PlayerController_VR>().camera_rig = camera_rig;
@@ -131,7 +131,7 @@ public class spawner_manager : MonoBehaviour
 
         }
 
-        if (owner == 2)
+        if (number == 2)
         {
             camera_rig.transform.parent = gunner_spawn.transform;
             camera_rig.transform.position = gunner_spawn.transform.position;
