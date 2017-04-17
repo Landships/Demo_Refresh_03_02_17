@@ -126,18 +126,20 @@ public class PlayerController_VR : MonoBehaviour {
     void update_world_state() {
         if (current_player == owner) {
             Read_Camera_Rig();
-        } else {
+        }
+
+        else {
             left_hand.transform.localPosition = new Vector3(left_x, left_y, left_z);
             right_hand.transform.localPosition = new Vector3(right_x, right_y, right_z);
             left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
             right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
-
+            /*
             Vector3 left_diff = new Vector3(left_abs_x, left_abs_y, left_abs_z) - left_hand.transform.position;
             Vector3 right_diff = new Vector3(right_abs_x, right_abs_y, right_abs_z) - right_hand.transform.position;
 
             left_hand.transform.position = Vector3.Lerp(left_hand.transform.position, left_hand.transform.position + left_diff, 0.5f);
             right_hand.transform.position = Vector3.Lerp(right_hand.transform.position, right_hand.transform.position + right_diff, 0.5f);
-
+            */
             if (left_blend == 1) {
                 left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
             } else {
@@ -153,9 +155,8 @@ public class PlayerController_VR : MonoBehaviour {
     }
 
     void Read_Camera_Rig() {
-        /*
-        left_hand.transform.localPosition = left_controller.transform.localPosition;
-        right_hand.transform.localPosition = right_controller.transform.localPosition;
+        left_hand.transform.position = left_controller.transform.position;
+        right_hand.transform.position = right_controller.transform.position;
         left_hand.transform.rotation = left_controller.transform.rotation;
         right_hand.transform.rotation = right_controller.transform.rotation;
         left_blend = left_script.currentBlend;
@@ -175,7 +176,7 @@ public class PlayerController_VR : MonoBehaviour {
         else
         {
             right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
-        }*/
+        }
 
     }
 
@@ -200,27 +201,27 @@ public class PlayerController_VR : MonoBehaviour {
 
     // The client get its values/inputs to send to the server
     void client_send_values() {
-        float[] left_controller_values = { left_controller.transform.localPosition.x,
-                                           left_controller.transform.localPosition.y,
-                                           left_controller.transform.localPosition.z,
-                                           left_controller.transform.rotation.eulerAngles.x,
-                                           left_controller.transform.rotation.eulerAngles.y,
-                                           left_controller.transform.rotation.eulerAngles.z,
+        float[] left_controller_values = { left_hand.transform.localPosition.x,
+                                           left_hand.transform.localPosition.y,
+                                           left_hand.transform.localPosition.z,
+                                           left_hand.transform.rotation.eulerAngles.x,
+                                           left_hand.transform.rotation.eulerAngles.y,
+                                           left_hand.transform.rotation.eulerAngles.z,
                                            left_script.currentBlend,
-                                           left_controller.transform.position.x,
-                                           left_controller.transform.position.y,
-                                           left_controller.transform.position.z };
+                                           left_hand.transform.position.x,
+                                           left_hand.transform.position.y,
+                                           left_hand.transform.position.z };
 
-        float[] right_controller_values = { right_controller.transform.localPosition.x,
-                                            right_controller.transform.localPosition.y,
-                                            right_controller.transform.localPosition.z,
-                                            right_controller.transform.rotation.eulerAngles.x,
-                                            right_controller.transform.rotation.eulerAngles.y,
-                                            right_controller.transform.rotation.eulerAngles.z,
+        float[] right_controller_values = { right_hand.transform.localPosition.x,
+                                            right_hand.transform.localPosition.y,
+                                            right_hand.transform.localPosition.z,
+                                            right_hand.transform.rotation.eulerAngles.x,
+                                            right_hand.transform.rotation.eulerAngles.y,
+                                            right_hand.transform.rotation.eulerAngles.z,
                                             right_script.currentBlend,
-                                            right_controller.transform.position.x,
-                                            right_controller.transform.position.y,
-                                            right_controller.transform.position.z };
+                                            right_hand.transform.position.x,
+                                            right_hand.transform.position.y,
+                                            right_hand.transform.position.z };
 
         n_manager_script.send_from_client(1, left_controller_values);
         n_manager_script.send_from_client(2, right_controller_values);
@@ -233,27 +234,27 @@ public class PlayerController_VR : MonoBehaviour {
     // Server Updates the server larger buffer it is going to send
     public void server_get_values_to_send() {
 
-        float[] left_controller_values = { left_controller.transform.localPosition.x,
-                                           left_controller.transform.localPosition.y,
-                                           left_controller.transform.localPosition.z,
-                                           left_controller.transform.rotation.eulerAngles.x,
-                                           left_controller.transform.rotation.eulerAngles.y,
-                                           left_controller.transform.rotation.eulerAngles.z,
+        float[] left_controller_values = { left_hand.transform.localPosition.x,
+                                           left_hand.transform.localPosition.y,
+                                           left_hand.transform.localPosition.z,
+                                           left_hand.transform.rotation.eulerAngles.x,
+                                           left_hand.transform.rotation.eulerAngles.y,
+                                           left_hand.transform.rotation.eulerAngles.z,
                                            left_script.currentBlend,
-                                           left_controller.transform.position.x,
-                                           left_controller.transform.position.y,
-                                           left_controller.transform.position.z };
+                                           left_hand.transform.position.x,
+                                           left_hand.transform.position.y,
+                                           left_hand.transform.position.z };
 
-        float[] right_controller_values = { right_controller.transform.localPosition.x,
-                                            right_controller.transform.localPosition.y,
-                                            right_controller.transform.localPosition.z,
-                                            right_controller.transform.rotation.eulerAngles.x,
-                                            right_controller.transform.rotation.eulerAngles.y,
-                                            right_controller.transform.rotation.eulerAngles.z,
+        float[] right_controller_values = { right_hand.transform.localPosition.x,
+                                            right_hand.transform.localPosition.y,
+                                            right_hand.transform.localPosition.z,
+                                            right_hand.transform.rotation.eulerAngles.x,
+                                            right_hand.transform.rotation.eulerAngles.y,
+                                            right_hand.transform.rotation.eulerAngles.z,
                                             right_script.currentBlend,
-                                            right_controller.transform.position.x,
-                                            right_controller.transform.position.y,
-                                            right_controller.transform.position.z };
+                                            right_hand.transform.position.x,
+                                            right_hand.transform.position.y,
+                                            right_hand.transform.position.z };
 
 
 
