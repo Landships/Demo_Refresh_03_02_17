@@ -536,8 +536,13 @@ public class Turret_Horizontal_CS : MonoBehaviour
 
     void updateHorizontalModelAngle() {
 
-        float UIAngle = horizontalRotatingModel.GetComponent<RectTransform>().localEulerAngles.z;
-        horizontalRotatingModel.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -Current_Angle - UIAngle));
+        if (horizontalRotatingModel)
+        {
+            float UIAngle = horizontalRotatingModel.GetComponent<RectTransform>().localEulerAngles.z;
+            horizontalRotatingModel.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -Current_Angle - UIAngle));
+        }
+
+        
 
     }
 
