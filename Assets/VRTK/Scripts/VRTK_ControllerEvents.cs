@@ -300,7 +300,6 @@ namespace VRTK
         public event ControllerInteractionEventHandler ControllerDisabled;
 
         private uint controllerIndex;
-        private uint hand = 0;
         private Vector2 touchpadAxis = Vector2.zero;
         private Vector2 triggerAxis = Vector2.zero;
         private float hairTriggerDelta;
@@ -308,6 +307,8 @@ namespace VRTK
         private Vector3 controllerAngularVelocity = Vector3.zero;
 
         private GameObject rig;
+        private uint hand = 0;
+        private Set_Camera_Position_on_Hotkey posSetter;
 
         public virtual void OnTriggerPressed(ControllerInteractionEventArgs e)
         {
@@ -667,6 +668,7 @@ namespace VRTK
         {
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             rig = GameObject.FindGameObjectWithTag("CameraRig");
+            posSetter = GameObject.FindGameObjectWithTag("Player").GetComponent<Set_Camera_Position_on_Hotkey>();
         }
 
         private void OnEnable()
@@ -989,6 +991,7 @@ namespace VRTK
             //Touchpad Pressed
             if (VRTK_SDK_Bridge.IsTouchpadPressedDownOnIndex(controllerIndex))
             {
+                posSetter.setPosition();
                 OnTouchpadPressed(SetButtonEvent(ref touchpadPressed, true, 1f));
                 EmitAlias(ButtonAlias.Touchpad_Press, true, 1f, ref touchpadPressed);
             }

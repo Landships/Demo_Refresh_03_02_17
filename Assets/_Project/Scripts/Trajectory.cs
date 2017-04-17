@@ -8,6 +8,7 @@ public class Trajectory : MonoBehaviour
     // Use this for initialization
     //public Cannon_Vertical_CS cannonScript;
     public Bullet_Generator_CS bulletScript;
+    public float forwardTranslate = 0f;
     //public Barrel_Base_CS barrelScript;
 
     private LineRenderer trajectoryLine;
@@ -25,7 +26,7 @@ public class Trajectory : MonoBehaviour
         trajectoryLine = GetComponent<LineRenderer>();
         trajectoryLine.startColor = Color.red;
         trajectoryLine.endColor = Color.red;
-        position = bulletScript.transform.position + -3 * bulletScript.transform.forward;
+        position = bulletScript.transform.position + forwardTranslate * bulletScript.transform.forward;
         velocity = bulletScript.transform.forward * bulletScript.Bullet_Force; //Offset added in original script-What does it do?
         //trajectoryLine.enabled = false;
 
@@ -34,7 +35,7 @@ public class Trajectory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        position = bulletScript.transform.position + -3 * bulletScript.transform.forward;
+        position = bulletScript.transform.position + forwardTranslate * bulletScript.transform.forward;
         velocity = bulletScript.transform.forward * bulletScript.Bullet_Force;
         updateTrajectory(position, velocity);
         // Use hotkey "t" to toggle whether the laser sight is displayed or not

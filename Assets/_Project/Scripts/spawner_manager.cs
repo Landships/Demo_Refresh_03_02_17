@@ -113,7 +113,23 @@ public class spawner_manager : MonoBehaviour
 
 
         // ADD OWNER TODO!!!!!!!!!!!!!!!!!!
-        if (current_player == owner)
+        if (owner != current_player)
+        {
+           if (owner == 1)
+            {
+                vr_player.transform.parent = camera_rig.transform.parent;
+                vr_player.transform.position = camera_rig.transform.position;
+                vr_player.transform.rotation = camera_rig.transform.rotation;
+            }
+           else
+            {
+                vr_player.transform.parent = gunner_spawn.transform;
+                vr_player.transform.position = gunner_spawn.transform.position;
+                vr_player.transform.rotation = gunner_spawn.transform.rotation;
+            }
+        }
+
+        else
         {
             //camera_rig.transform.position = new Vector3(x, y, z);
             vr_player.gameObject.GetComponent<PlayerController_VR>().camera_rig = camera_rig;
@@ -123,20 +139,20 @@ public class spawner_manager : MonoBehaviour
             vr_player.gameObject.GetComponent<PlayerController_VR>().left_controller = left_controller.gameObject;
             vr_player.gameObject.GetComponent<PlayerController_VR>().right_controller = right_controller.gameObject;
             vr_player.gameObject.GetComponent<PlayerController_VR>().Setup();
+            //vr_player.gameObject.GetComponent<PlayerController_VR>().add_trigger_listener();
+
+            if (current_player == 2)
+            {
+                camera_rig.transform.parent = gunner_spawn.transform;
+                camera_rig.transform.position = gunner_spawn.transform.position;
+            }
+
             vr_player.transform.parent = camera_rig.transform.parent;
             vr_player.transform.position = camera_rig.transform.position;
             vr_player.transform.rotation = camera_rig.transform.rotation;
-
-            //vr_player.gameObject.GetComponent<PlayerController_VR>().add_trigger_listener();
-
         }
 
-        if (current_player == 2)
-        {
-            camera_rig.transform.parent = gunner_spawn.transform;
-            camera_rig.transform.position = gunner_spawn.transform.position;
-
-        }
+        
 
         prep_script.BroadCast();
         ai_1.BroadCast();

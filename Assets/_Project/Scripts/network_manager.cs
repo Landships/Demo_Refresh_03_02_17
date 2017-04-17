@@ -55,17 +55,17 @@ public class network_manager : MonoBehaviour
 
     // Buffer Info
     // Sizes
-    public int size_of_server_buffer = 295;
-    public int size_of_client_buffer = 132;
+    public int size_of_server_buffer = 319;
+    public int size_of_client_buffer = 156;
     // Client Buffers
-    static byte[] client_to_server_data_large = new byte[132];
-    static byte[] client_reliable_buffer = new byte[132];
-    static byte[] client_reliable_data_from_server = new byte[295];
+    static byte[] client_to_server_data_large = new byte[156];
+    static byte[] client_reliable_buffer = new byte[156];
+    static byte[] client_reliable_data_from_server = new byte[319];
     // Server Buffers
-    static byte[] server_to_client_data_large = new byte[295]; // this also stores the data for the client
-    static byte[] server_reliable_buffer = new byte[295];
-    static byte[] server_data_from_client = new byte[132];
-    static byte[] server_reliable_data_from_client = new byte[132];
+    static byte[] server_to_client_data_large = new byte[319]; // this also stores the data for the client
+    static byte[] server_reliable_buffer = new byte[319];
+    static byte[] server_data_from_client = new byte[156];
+    static byte[] server_reliable_data_from_client = new byte[156];
 
     int frame = 0;
 
@@ -487,49 +487,49 @@ public class network_manager : MonoBehaviour
 
         switch (object_case) {
             case 1: // Left Hand
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 3, 28);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 3, 40);
                 break;
             case 2: // Right Hand
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 31, 28);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 43, 40);
                 break;
             case 3: // Hull Position
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 59, 12);
-                break;
-            case 4: // Hull Rotation
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 71, 12);
-                break;
-            case 5: // Turret Position
                 Buffer.BlockCopy(values, 0, server_to_client_data_large, 83, 12);
                 break;
-            case 6: // Turret Rotation
+            case 4: // Hull Rotation
                 Buffer.BlockCopy(values, 0, server_to_client_data_large, 95, 12);
                 break;
-            case 7: // Gun Rotation
+            case 5: // Turret Position
                 Buffer.BlockCopy(values, 0, server_to_client_data_large, 107, 12);
                 break;
+            case 6: // Turret Rotation
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 119, 12);
+                break;
+            case 7: // Gun Rotation
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 131, 12);
+                break;
             case 8: // Left Lever
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 119, 4);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 143, 4);
                 break;
             case 9: // Right Lever
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 123, 4);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 147, 4);
                 break;
             case 10: // Vertical Crank
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 127, 4);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 151, 4);
                 break;
             case 11: // Horizontal Crank
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 131, 4);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 155, 4);
                 break;
             case 12: // AI Tank 1
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 135, 40);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 159, 40);
                 break;
             case 13: // AI Tank 2
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 175, 40);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 199, 40);
                 break;
             case 14: // AI Tank 3
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 215, 40);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 239, 40);
                 break;
             case 15: // AI Tank 4
-                Buffer.BlockCopy(values, 0, server_to_client_data_large, 255, 40);
+                Buffer.BlockCopy(values, 0, server_to_client_data_large, 279, 40);
                 break;
         }
 
@@ -555,37 +555,37 @@ public class network_manager : MonoBehaviour
 
         switch (object_case) {
             case 1: // Left Hand
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 0, 28);
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 0, 40);
                 break;
             case 2: // Right Hand
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 28, 28);
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 40, 40);
                 break;
             case 3: // Hull Position
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 56, 12);
-                break;
-            case 4: // Hull Rotation
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 68, 12);
-                break;
-            case 5: // Turret Position
                 Buffer.BlockCopy(values, 0, client_to_server_data_large, 80, 12);
                 break;
-            case 6: // Turret Rotation
+            case 4: // Hull Rotation
                 Buffer.BlockCopy(values, 0, client_to_server_data_large, 92, 12);
                 break;
-            case 7: // Gun Rotation
+            case 5: // Turret Position
                 Buffer.BlockCopy(values, 0, client_to_server_data_large, 104, 12);
                 break;
+            case 6: // Turret Rotation
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 116, 12);
+                break;
+            case 7: // Gun Rotation
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 128, 12);
+                break;
             case 8: // Left Lever
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 116, 4);
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 140, 4);
                 break;
             case 9: // Right Lever
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 120, 4);
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 144, 4);
                 break;
             case 10: // Vertical Crank
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 124, 4);
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 148, 4);
                 break;
             case 11: // Horizontal Crank
-                Buffer.BlockCopy(values, 0, client_to_server_data_large, 128, 4);
+                Buffer.BlockCopy(values, 0, client_to_server_data_large, 152, 4);
                 break;
         }
 
@@ -602,75 +602,75 @@ public class network_manager : MonoBehaviour
         int values_amount = 0;
         float[] values_3 = new float[3];
         float[] value = new float[1];
-        float[] values_7 = new float[7];
+        float[] values_10 = new float[10];
         float[] value_ai = new float[40];
 
 
         switch (object_case) {
             case 1: // Left Hand
-                Buffer.BlockCopy(server_to_client_data_large, 3, values_7, 0, 28);
-                values_amount = 7;
+                Buffer.BlockCopy(server_to_client_data_large, 3, values_10, 0, 40);
+                values_amount = 10;
                 break;
             case 2: // Right Hand
-                Buffer.BlockCopy(server_to_client_data_large, 31, values_7, 0, 28);
-                values_amount = 7;
+                Buffer.BlockCopy(server_to_client_data_large, 43, values_10, 0, 40);
+                values_amount = 10;
                 break;
             case 3: // Hull Position
-                Buffer.BlockCopy(server_to_client_data_large, 59, values_3, 0, 12);
-                values_amount = 3;
-                break;
-            case 4: // Hull Rotation
-                Buffer.BlockCopy(server_to_client_data_large, 71, values_3, 0, 12);
-                values_amount = 3;
-                break;
-            case 5: // Turret Position
                 Buffer.BlockCopy(server_to_client_data_large, 83, values_3, 0, 12);
                 values_amount = 3;
                 break;
-            case 6: // Turret Rotation
+            case 4: // Hull Rotation
                 Buffer.BlockCopy(server_to_client_data_large, 95, values_3, 0, 12);
                 values_amount = 3;
                 break;
-            case 7: // Gun Rotation
+            case 5: // Turret Position
                 Buffer.BlockCopy(server_to_client_data_large, 107, values_3, 0, 12);
                 values_amount = 3;
                 break;
+            case 6: // Turret Rotation
+                Buffer.BlockCopy(server_to_client_data_large, 119, values_3, 0, 12);
+                values_amount = 3;
+                break;
+            case 7: // Gun Rotation
+                Buffer.BlockCopy(server_to_client_data_large, 131, values_3, 0, 12);
+                values_amount = 3;
+                break;
             case 8: // Left Lever
-                Buffer.BlockCopy(server_to_client_data_large, 119, value, 0, 4);
+                Buffer.BlockCopy(server_to_client_data_large, 143, value, 0, 4);
                 values_amount = 1;
                 break;
             case 9: // Right Lever
-                Buffer.BlockCopy(server_to_client_data_large, 123, value, 0, 4);
+                Buffer.BlockCopy(server_to_client_data_large, 147, value, 0, 4);
                 values_amount = 1;
                 break;
             case 10: // Vertical Crank
-                Buffer.BlockCopy(server_to_client_data_large, 127, value, 0, 4);
+                Buffer.BlockCopy(server_to_client_data_large, 151, value, 0, 4);
                 values_amount = 1;
                 break;
             case 11: // Horizontal Crank
-                Buffer.BlockCopy(server_to_client_data_large, 131, value, 0, 4);
+                Buffer.BlockCopy(server_to_client_data_large, 155, value, 0, 4);
                 values_amount = 1;
                 break;
             case 12: // AI Tank 1
-                Buffer.BlockCopy(server_to_client_data_large, 135, value_ai, 0, 40);
+                Buffer.BlockCopy(server_to_client_data_large, 159, value_ai, 0, 40);
                 values_amount = 32;
                 break;
             case 13: // AI Tank 2
-                Buffer.BlockCopy(server_to_client_data_large, 175, value_ai, 0, 40);
+                Buffer.BlockCopy(server_to_client_data_large, 199, value_ai, 0, 40);
                 values_amount = 32;
                 break;
             case 14: // AI Tank 3
-                Buffer.BlockCopy(server_to_client_data_large, 215, value_ai, 0, 40);
+                Buffer.BlockCopy(server_to_client_data_large, 239, value_ai, 0, 40);
                 values_amount = 32;
                 break;
             case 15: // AI Tank 4
-                Buffer.BlockCopy(server_to_client_data_large, 255, value_ai, 0, 40);
+                Buffer.BlockCopy(server_to_client_data_large, 279, value_ai, 0, 40);
                 values_amount = 32;
                 break;
         }
         switch(values_amount)
         {
-            case 7: return values_7;
+            case 10: return values_10;
             case 1: return value;
             case 3: return values_3;
             case 32: return value_ai;
@@ -687,61 +687,61 @@ public class network_manager : MonoBehaviour
 
         int values_amount = 0;
         float[] values_3 = new float[3];
-        float[] values_7 = new float[7];
+        float[] values_10 = new float[10];
         float[] value = new float[1];
       
 
         switch (object_case) 
             {
                 case 1: // Left Hand
-                    Buffer.BlockCopy(server_data_from_client, 0, values_7, 0, 28);
-                    values_amount = 7;
+                    Buffer.BlockCopy(server_data_from_client, 0, values_10, 0, 40);
+                    values_amount = 10;
                     break;
                 case 2: // Right Hand
-                    Buffer.BlockCopy(server_data_from_client, 28, values_7, 0, 28);
-                    values_amount = 7;
+                    Buffer.BlockCopy(server_data_from_client, 40, values_10, 0, 40);
+                    values_amount = 10;
                     break;
                 case 3: // Hull Position
-                    Buffer.BlockCopy(server_data_from_client, 56, values_3, 0, 12);
-                    values_amount = 3;
-                    break;
-                case 4: // Hull Rotation
-                    Buffer.BlockCopy(server_data_from_client, 68, values_3, 0, 12);
-                    values_amount = 3;
-                    break;
-                case 5: // Turret "Turret_Objects" Rotation Angle
                     Buffer.BlockCopy(server_data_from_client, 80, values_3, 0, 12);
                     values_amount = 3;
                     break;
-                case 6: // Turret "Cannon_Base" Vertical Angle
+                case 4: // Hull Rotation
                     Buffer.BlockCopy(server_data_from_client, 92, values_3, 0, 12);
                     values_amount = 3;
                     break;
-                case 7: // Gun Rotation
+                case 5: // Turret "Turret_Objects" Rotation Angle
                     Buffer.BlockCopy(server_data_from_client, 104, values_3, 0, 12);
                     values_amount = 3;
                     break;
+                case 6: // Turret "Cannon_Base" Vertical Angle
+                    Buffer.BlockCopy(server_data_from_client, 116, values_3, 0, 12);
+                    values_amount = 3;
+                    break;
+                case 7: // Gun Rotation
+                    Buffer.BlockCopy(server_data_from_client, 128, values_3, 0, 12);
+                    values_amount = 3;
+                    break;
                 case 8: // Left Lever
-                    Buffer.BlockCopy(server_data_from_client, 116, value, 0, 4);
+                    Buffer.BlockCopy(server_data_from_client, 140, value, 0, 4);
                     values_amount = 1;
                     break;
                 case 9: // Right Lever
-                    Buffer.BlockCopy(server_data_from_client, 120, value, 0, 4);
+                    Buffer.BlockCopy(server_data_from_client, 144, value, 0, 4);
                     values_amount = 1;
                     break;
                 case 10: // Vertical Crank
-                    Buffer.BlockCopy(server_data_from_client, 124, value, 0, 4);
+                    Buffer.BlockCopy(server_data_from_client, 148, value, 0, 4);
                     values_amount = 1;
                     break; 
                 case 11: // Horizontal Crank
-                    Buffer.BlockCopy(server_data_from_client, 128, value, 0, 4);
+                    Buffer.BlockCopy(server_data_from_client, 152, value, 0, 4);
                     values_amount = 1;
                     break;
             }
 
         switch (values_amount)
         {
-            case 7: return values_7;
+            case 10: return values_10;
             case 1: return value;
             case 3: return values_3;
             default: return value;
@@ -1103,7 +1103,6 @@ public class network_manager : MonoBehaviour
             Debug.Log("Client reconnect attempt");
         }
     }
-
 
 
 
