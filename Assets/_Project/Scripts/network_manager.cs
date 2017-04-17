@@ -104,8 +104,9 @@ public class network_manager : MonoBehaviour
         if (is_host)
         {
             server_client_connection[server_players_amount] = 0;
-            server_players_amount++;
+            //server_players_amount++;
             client_players_amount = 1;
+            spawn_man.spawn_player(1, 1);
 
             Debug.Log("SERVER");
             server_setup();
@@ -116,6 +117,8 @@ public class network_manager : MonoBehaviour
         {
             Debug.Log("CLIENT");
             client_players_amount = 2;
+            spawn_man.spawn_player(2, 2);
+
             client_setup();
             connect_to_server(ChangeIp.ipAddress);
             Debug.Log(ChangeIp.ipAddress.ToString());
@@ -141,7 +144,7 @@ public class network_manager : MonoBehaviour
         {
             if(no_canvas_start == false)
             {
-                spawn_man.spawn_four_players(4);
+                spawn_man.spawn_four_players(1);
                 no_canvas_start = true;
             }
             else

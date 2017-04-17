@@ -58,7 +58,7 @@ public class spawner_manager : MonoBehaviour
 
 
 
-    void spawn_player(byte number, byte owner)
+    public void spawn_player(byte number, byte owner)
     {
         float x = 0;
         float y = 0;
@@ -113,7 +113,7 @@ public class spawner_manager : MonoBehaviour
 
 
         // ADD OWNER TODO!!!!!!!!!!!!!!!!!!
-        if (current_player == owner)
+        if (owner == 1)
         {
             //camera_rig.transform.position = new Vector3(x, y, z);
             vr_player.gameObject.GetComponent<PlayerController_VR>().camera_rig = camera_rig;
@@ -131,7 +131,7 @@ public class spawner_manager : MonoBehaviour
 
         }
 
-        if (current_player == 2)
+        if (owner == 2)
         {
             camera_rig.transform.parent = gunner_spawn.transform;
             camera_rig.transform.position = gunner_spawn.transform.position;
