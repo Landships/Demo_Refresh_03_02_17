@@ -511,8 +511,18 @@ public class AI_CS : MonoBehaviour {
 	}
 
 	public bool RayCast_Check ( Transform Temp_Transform , MainBody_Setting_CS Temp_Script ) { // Called from Game_Controller.
-		This_Transform.localPosition = Initial_Position ; // Fix this position and rotation.
-		Vector3 Temp_Pos = Temp_Transform.position + ( Temp_Transform.up * Temp_Script.AI_Upper_Offset ) ;
+        if (Initial_Position == null) {
+            Initial_Position = This_Transform.localPosition;
+        }
+        if (Initial_Position == null) {
+            Debug.Log("Initial_Position not initialized");
+        }
+        if (This_Transform.localPosition == null) {
+            Debug.Log("LocalPos not initialized");
+        }
+        //Debug.Log("Local Position" + This_Transform.localPosition);
+        This_Transform.localPosition = Initial_Position; // Fix this position and rotation.
+        Vector3 Temp_Pos = Temp_Transform.position + ( Temp_Transform.up * Temp_Script.AI_Upper_Offset ) ;
 		Ray Temp_Ray = new Ray ( Eye_Transform.position , Temp_Pos - Eye_Transform.position ) ;
 		RaycastHit Temp_RaycastHit ;
 		if ( Physics.Raycast ( Temp_Ray , out Temp_RaycastHit , Visibility_Radius , Ray_LayerMask ) ) { // Ray hits anything.
