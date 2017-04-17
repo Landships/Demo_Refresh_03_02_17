@@ -105,7 +105,7 @@ public class network_manager : MonoBehaviour
         {
             server_client_connection[server_players_amount] = 0;
             server_players_amount++;
-            client_players_amount++;
+            client_players_amount = 1;
 
             Debug.Log("SERVER");
             server_setup();
@@ -115,7 +115,7 @@ public class network_manager : MonoBehaviour
         if (!is_host )
         {
             Debug.Log("CLIENT");
-
+            client_players_amount = 2;
             client_setup();
             connect_to_server(ChangeIp.ipAddress);
             Debug.Log(ChangeIp.ipAddress.ToString());
@@ -419,13 +419,13 @@ public class network_manager : MonoBehaviour
                 if (buffer[2] == 0)
                 {
                     //client_joined = true;
-                    client_players_amount = 2;
+                    //client_players_amount = 2;
                     //Debug.Log("Number of Players in Lobby: " + client_players_amount.ToString());
 
                     // Open up a joined canvas for the client
                     GameObject custom_network_manager = GameObject.Find("Game Manager(Clone)");
-                    manager_script = custom_network_manager.GetComponent<Canvas_Manager>();
-                    manager_script.waiting_in_lobby(client_players_amount);
+                    //manager_script = custom_network_manager.GetComponent<Canvas_Manager>();
+                    //manager_script.waiting_in_lobby(client_players_amount);
                 }
 
                 if (buffer[2] == 1)
