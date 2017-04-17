@@ -9,10 +9,11 @@ using System;
 public class network_manager : MonoBehaviour
 {
 
-    static bool is_host;
+    static bool is_host = false;
     Canvas_Manager manager_script;
     GameObject server_lobby;
     GameObject join_lobby;
+    spawner_manager spawn_man;
 
 
     //Network variables
@@ -69,34 +70,59 @@ public class network_manager : MonoBehaviour
 
     int frame = 0;
 
+    bool no_canvas_start = false;
+
+    bool no_canvas_client_connected = false;
+    bool no_canvas_server_connected = false;
+
+
 
     void Start()
     {
+        if (ChangeIp.ipAddress == "host")
+        {
+            is_host = true;
+        }
+        else
+        {
+            is_host = false;
+        }
 
+        Debug.Log(ChangeIp.ipAddress.ToString());
+        Debug.Log("ip address");
         //Array.Clear(server_to_client_data, 0, 24);
 
         GameObject custom_network_manager = GameObject.Find("Game Manager(Clone)");
         manager_script = custom_network_manager.GetComponent<Canvas_Manager>();
-        is_host = manager_script.get_host_status();
-        Debug.Log(manager_script.get_host_status().ToString());
+        spawn_man = custom_network_manager.GetComponent<spawner_manager>();
+
+        //is_host = manager_script.get_host_status();
+        //Debug.Log(manager_script.get_host_status().ToString());
         //server_ip = manager_script.get_address();
-        server_ip = manager_script.get_inserted_ip();
+        //server_ip = manager_script.get_inserted_ip();
 
         if (is_host)
         {
             server_client_connection[server_players_amount] = 0;
-            server_players_amount++;
-            client_players_amount++;
+            //server_players_amount++;
+            client_players_amount = 1;
+            spawn_man.spawn_four_players(1);
 
-            join("Player 1");
+            Debug.Log("SERVER");
             server_setup();
 
         }
 
-        if (!is_host && server_ip != "")
+        if (!is_host )
         {
+            Debug.Log("CLIENT");
+            client_players_amount = 2;
+            spawn_man.spawn_four_players(2);
+
+
             client_setup();
-            connect_to_server(server_ip);
+            connect_to_server(ChangeIp.ipAddress);
+            Debug.Log(ChangeIp.ipAddress.ToString());
 
         }
 
@@ -107,28 +133,26 @@ public class network_manager : MonoBehaviour
     {
 
 
-        /// Game Not running ///
-        if (!game_ready && is_host)
+
+        // Client Poll Server
+        if (!no_canvas_client_connected && !is_host)
         {
-            //Debug.Log("Server is going to the right place"); ;
-            server_game_not_ready();
-        }
-        if (!game_ready && !is_host)
-        {
+            //connect_to_server(ChangeIp.ipAddress);
             client_lobby_update();
-
         }
-        /// Game Not running ///
 
-
-
-        if (client_joined && game_ready)
+        if (no_canvas_client_connected && !is_host)
         {
-            //do game stuff Client
-            if (started)
+            if(no_canvas_start == false)
             {
+                spawn_man.spawn_four_players(1);
+                no_canvas_start = true;
+            }
+            else
+             {
                 if (frame == 4)
                 {
+                   // Debug.Log("client attempt send");
                     client_send_information(); //constant unreliable 
                     frame = 0;
                 }
@@ -136,20 +160,28 @@ public class network_manager : MonoBehaviour
                 {
                     frame++;
                 }
+                //Debug.Log("client attempt recieve");
+
                 client_recieve_data(); //only unreliable from server
-                
             }
         }
 
-        if (is_host && game_ready)
+        if (!no_canvas_server_connected && is_host)
         {
-            //do Game Stuff SERVER
-
-            if (started == true)
+            server_game_not_ready();
+        }
+        if (no_canvas_server_connected && is_host)
+        {
+            if (no_canvas_start == false)
             {
-
+                spawn_man.spawn_four_players(4);
+                no_canvas_start = true;
+            }
+            else {
                 if (frame == 4)
                 {
+                    //Debug.Log("server attempt send");
+
                     server_send_large_message_to_client(); //unreliable
                     frame = 0;
                 }
@@ -157,18 +189,11 @@ public class network_manager : MonoBehaviour
                 {
                     frame++;
                 }
+                //Debug.Log("server attempt recieve");
+
                 server_recieve_data(); // reliable and unreliable from clients
-
-            }
-
-
-            if (!started)
-            {
-                tell_clients_to_start();
-                started = true;
             }
         }
-
 
     }
 
@@ -312,12 +337,13 @@ public class network_manager : MonoBehaviour
                 server_players_amount++;
                 Debug.Log("Player " + server_players_amount.ToString() + " Joined");
 
-                join("Player " + server_players_amount.ToString());
+                //join("Player " + server_players_amount.ToString());
                 //Debug.Log(received_host_ID.ToString());
                 //Debug.Log("ServerConnection Before: " + server_client_connection);
                 server_client_connection[server_players_amount - 1] = received_connection_ID;
                 //Debug.Log("ServerConnection After: " + server_client_connection);
                 server_confirm_client_join(received_connection_ID, server_players_amount);
+                no_canvas_server_connected = true;
 
                 break;
         }
@@ -388,21 +414,22 @@ public class network_manager : MonoBehaviour
                 //Debug.Log("...");
                 break;
             case NetworkEventType.ConnectEvent:
-                Debug.Log("Its getting a connection event...Now?");
+                no_canvas_client_connected = true;
+
                 break;
             case NetworkEventType.DataEvent:
                 Debug.Log("Its getting data");
 
                 if (buffer[2] == 0)
                 {
-                    client_joined = true;
-                    client_players_amount = buffer[1];
-                    Debug.Log("Number of Players in Lobby: " + client_players_amount.ToString());
+                    //client_joined = true;
+                    //client_players_amount = 2;
+                    //Debug.Log("Number of Players in Lobby: " + client_players_amount.ToString());
 
                     // Open up a joined canvas for the client
                     GameObject custom_network_manager = GameObject.Find("Game Manager(Clone)");
-                    manager_script = custom_network_manager.GetComponent<Canvas_Manager>();
-                    manager_script.waiting_in_lobby(client_players_amount);
+                    //manager_script = custom_network_manager.GetComponent<Canvas_Manager>();
+                    //manager_script.waiting_in_lobby(client_players_amount);
                 }
 
                 if (buffer[2] == 1)
@@ -935,7 +962,7 @@ public class network_manager : MonoBehaviour
 
                 // Thid updates the buffer and the current player
 
-                server_player_control = received_connection_ID + 1; // Update world based on data from player 2 message
+                server_player_control = 2; // Update world based on data from player 2 message
 
                 break;
         }
@@ -972,6 +999,7 @@ public class network_manager : MonoBehaviour
             case NetworkEventType.ConnectEvent:
                 break;
             case NetworkEventType.DataEvent:
+                Debug.Log("Client Recieved Data");
                 if (received_channel_ID == server_reliable_channel)
                 {
                     client_reliable_data_from_server = buffer;
