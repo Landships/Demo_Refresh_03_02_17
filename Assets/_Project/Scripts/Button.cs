@@ -51,7 +51,6 @@
         {
             yield return new WaitForSeconds(time);
             objectHighlighter.Unhighlight();
-            Debug.Log("this is totally working");
             cooldownHighlight = false;
 			canFire = true;
             // Code to execute after the delay

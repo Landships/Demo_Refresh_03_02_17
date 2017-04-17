@@ -970,7 +970,7 @@ namespace VRTK
             //Grip
             if (VRTK_SDK_Bridge.IsGripPressedDownOnIndex(controllerIndex))
             {
-                Debug.Log("hand: " + hand);
+                //Debug.Log("hand: " + hand);
                 if (hand == 0)
                 {
                     rig.transform.position = new Vector3(rig.transform.position.x, rig.transform.position.y + 0.05f, rig.transform.position.z);

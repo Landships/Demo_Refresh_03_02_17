@@ -17,7 +17,7 @@ public class EndTrigger : MonoBehaviour {
 
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Tank")) {
+        if (other.gameObject.CompareTag("Player")) {
             message.text = "Mission Completed! Nice Job";
             print("Target reached, starting countdown to scene switch");
             StartCoroutine(switchScenes());

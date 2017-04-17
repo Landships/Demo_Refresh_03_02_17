@@ -15,7 +15,7 @@ public class EndScene : MonoBehaviour {
 			Application.LoadLevel("Menu");
 		}
 		if (GameObject.Find ("AI_1") == null && GameObject.Find ("AI_2") == null && GameObject.Find ("AI_3") == null && GameObject.Find ("AI_4") == null) {
-			Application.LoadLevel("Menu");
+			//Application.LoadLevel("Menu");
 		}
 	}
 }
