@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ChangeIp : MonoBehaviour {
 
-	static public string ipAddress;
+	static public string ipAddress = "-1";
 
 	public void changeIp(string ip) {
 		

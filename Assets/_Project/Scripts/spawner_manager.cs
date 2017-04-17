@@ -15,11 +15,12 @@ public class spawner_manager : MonoBehaviour
     static Ai_Prep ai_4;
     static GameObject gunner_spawn;
     static GameObject driver_spawn;
-	static TextHide driver_text;
-	static TextHide turret_text;
+    static TextHide driver_text;
+    static TextHide turret_text;
 
     void Start()
     {
+       
         camera_rig = GameObject.Find("[CameraRig]");
         left_controller = camera_rig.transform.FindChild("Controller (left)").gameObject;
         right_controller = camera_rig.transform.FindChild("Controller (right)").gameObject;
@@ -28,8 +29,8 @@ public class spawner_manager : MonoBehaviour
         ai_2 = GameObject.Find("AI_2").transform.GetChild(0).GetComponent<Ai_Prep>();
         ai_3 = GameObject.Find("AI_3").transform.GetChild(0).GetComponent<Ai_Prep>();
         ai_4 = GameObject.Find("AI_4").transform.GetChild(0).GetComponent<Ai_Prep>();
-		driver_text = GameObject.Find ("DriverText").GetComponent<TextHide> ();
-		turret_text = GameObject.Find ("TurretText").GetComponent<TextHide> ();
+        driver_text = GameObject.Find("DriverText").GetComponent<TextHide>();
+        turret_text = GameObject.Find("TurretText").GetComponent<TextHide>();
         driver_spawn = GameObject.Find("CorrectDriverPos");
         gunner_spawn = GameObject.Find("GunnerPos");
     }
@@ -42,9 +43,9 @@ public class spawner_manager : MonoBehaviour
 
         //Debug.Log("I will spawn " + " players");
         byte tally = 1;
-        while (tally <= num_players)
+        while (tally <= 2)
         {
-            spawn_player(tally, tally);
+            spawn_player(num_players, tally);
             tally++;
         }
 
@@ -60,7 +61,7 @@ public class spawner_manager : MonoBehaviour
 
 
 
-    void spawn_player(byte number, byte owner)
+    public void spawn_player(byte number, byte owner)
     {
         float x = 0;
         float y = 0;
@@ -107,11 +108,11 @@ public class spawner_manager : MonoBehaviour
 
         vr_player.gameObject.GetComponent<PlayerController_VR>().owner = owner;
 
-       // Debug.Log("DONE");
+        // Debug.Log("DONE");
 
         GameObject n_manager = GameObject.Find("Custom Network Manager(Clone)");
         network_manager n_manager_script = n_manager.GetComponent<network_manager>();
-        byte current_player = (byte)(n_manager_script.client_players_amount);
+        //byte current_player = (byte)(n_manager_script.client_players_amount);
 
 
         // ADD OWNER TODO!!!!!!!!!!!!!!!!!!
@@ -127,7 +128,7 @@ public class spawner_manager : MonoBehaviour
             vr_player.transform.position = gunner_spawn.transform.position;
             vr_player.transform.rotation = gunner_spawn.transform.rotation;
         }
-        
+
 
         vr_player.gameObject.GetComponent<PlayerController_VR>().camera_rig = camera_rig;
 
@@ -136,20 +137,20 @@ public class spawner_manager : MonoBehaviour
         vr_player.gameObject.GetComponent<PlayerController_VR>().right_controller = right_controller.gameObject;
         vr_player.gameObject.GetComponent<PlayerController_VR>().Setup();
 
-        if (current_player == 2)
+        if (number == 2)
         {
             camera_rig.transform.parent = gunner_spawn.transform;
             camera_rig.transform.position = gunner_spawn.transform.position;
         }
-   
+
         prep_script.BroadCast();
         ai_1.BroadCast();
         ai_2.BroadCast();
         ai_3.BroadCast();
         ai_4.BroadCast();
 
-		driver_text.DelayHide ();
-		turret_text.DelayHide ();
+        driver_text.DelayHide();
+        turret_text.DelayHide();
     }
 
 

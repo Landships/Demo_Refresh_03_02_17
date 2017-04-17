@@ -129,17 +129,11 @@ public class PlayerController_VR : MonoBehaviour {
         }
 
         else {
-            left_hand.transform.localPosition = new Vector3(left_x, left_y, left_z);
-            right_hand.transform.localPosition = new Vector3(right_x, right_y, right_z);
+            left_hand.transform.localPosition = Vector3.Lerp(left_hand.transform.localPosition, new Vector3(left_x, left_y, left_z), 0.1f);
+            right_hand.transform.localPosition = Vector3.Lerp(left_hand.transform.localPosition, new Vector3(right_x, right_y, right_z), 0.1f);
             left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
             right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
-            /*
-            Vector3 left_diff = new Vector3(left_abs_x, left_abs_y, left_abs_z) - left_hand.transform.position;
-            Vector3 right_diff = new Vector3(right_abs_x, right_abs_y, right_abs_z) - right_hand.transform.position;
 
-            left_hand.transform.position = Vector3.Lerp(left_hand.transform.position, left_hand.transform.position + left_diff, 0.5f);
-            right_hand.transform.position = Vector3.Lerp(right_hand.transform.position, right_hand.transform.position + right_diff, 0.5f);
-            */
             if (left_blend == 1) {
                 left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
             } else {
@@ -159,25 +153,6 @@ public class PlayerController_VR : MonoBehaviour {
         right_hand.transform.position = right_controller.transform.position;
         left_hand.transform.rotation = left_controller.transform.rotation;
         right_hand.transform.rotation = right_controller.transform.rotation;
-        left_blend = left_script.currentBlend;
-        right_blend = right_script.currentBlend;
-        if (left_blend == 1)
-        {
-            left_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
-        }
-        else
-        {
-            left_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
-        }
-        if (right_blend == 1)
-        {
-            right_animator.SetFloat("handBlend", 1.0f, 0.1f, Time.deltaTime);
-        }
-        else
-        {
-            right_animator.SetFloat("handBlend", 0.0f, 0.1f, Time.deltaTime);
-        }
-
     }
 
     public byte get_client_player_number() {
