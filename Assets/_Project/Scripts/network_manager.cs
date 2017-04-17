@@ -19,14 +19,14 @@ public class network_manager : MonoBehaviour
     //Network variables
     string server_ip;
     public bool game_ready = false;
-    static byte server_players_amount = 0;
+    byte server_players_amount = 0;
 
     //Server Stuff
     int server_port = 8888;
     byte server_unreliable_channel;
     byte server_reliable_channel;
-    static int[] server_client_connection = new int[4];
-    static int server_socket_ID;
+    int[] server_client_connection = new int[4];
+    int server_socket_ID;
     int max_connections = 10;
 
 
@@ -59,14 +59,14 @@ public class network_manager : MonoBehaviour
     public int size_of_server_buffer = 319;
     public int size_of_client_buffer = 156;
     // Client Buffers
-    static byte[] client_to_server_data_large = new byte[156];
-    static byte[] client_reliable_buffer = new byte[156];
-    static byte[] client_reliable_data_from_server = new byte[319];
+    byte[] client_to_server_data_large = new byte[156];
+    byte[] client_reliable_buffer = new byte[156];
+    byte[] client_reliable_data_from_server = new byte[319];
     // Server Buffers
-    static byte[] server_to_client_data_large = new byte[319]; // this also stores the data for the client
-    static byte[] server_reliable_buffer = new byte[319];
-    static byte[] server_data_from_client = new byte[156];
-    static byte[] server_reliable_data_from_client = new byte[156];
+    byte[] server_to_client_data_large = new byte[319]; // this also stores the data for the client
+    byte[] server_reliable_buffer = new byte[319];
+    byte[] server_data_from_client = new byte[156];
+    byte[] server_reliable_data_from_client = new byte[156];
 
     int frame = 0;
 
