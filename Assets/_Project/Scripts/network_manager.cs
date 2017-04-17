@@ -148,7 +148,7 @@ public class network_manager : MonoBehaviour
              {
                 if (frame == 4)
                 {
-                    Debug.Log("client attempt send");
+                   // Debug.Log("client attempt send");
                     client_send_information(); //constant unreliable 
                     frame = 0;
                 }
@@ -156,7 +156,7 @@ public class network_manager : MonoBehaviour
                 {
                     frame++;
                 }
-                Debug.Log("client attempt recieve");
+                //Debug.Log("client attempt recieve");
 
                 client_recieve_data(); //only unreliable from server
             }
@@ -176,7 +176,7 @@ public class network_manager : MonoBehaviour
             else {
                 if (frame == 4)
                 {
-                    Debug.Log("server attempt send");
+                    //Debug.Log("server attempt send");
 
                     server_send_large_message_to_client(); //unreliable
                     frame = 0;
@@ -185,7 +185,7 @@ public class network_manager : MonoBehaviour
                 {
                     frame++;
                 }
-                Debug.Log("server attempt recieve");
+                //Debug.Log("server attempt recieve");
 
                 server_recieve_data(); // reliable and unreliable from clients
             }
@@ -995,6 +995,7 @@ public class network_manager : MonoBehaviour
             case NetworkEventType.ConnectEvent:
                 break;
             case NetworkEventType.DataEvent:
+                Debug.Log("Client Recieved Data");
                 if (received_channel_ID == server_reliable_channel)
                 {
                     client_reliable_data_from_server = buffer;
