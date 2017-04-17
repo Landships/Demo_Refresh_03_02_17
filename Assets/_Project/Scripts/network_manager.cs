@@ -418,9 +418,9 @@ public class network_manager : MonoBehaviour
 
                 if (buffer[2] == 0)
                 {
-                    client_joined = true;
-                    client_players_amount = buffer[1];
-                    Debug.Log("Number of Players in Lobby: " + client_players_amount.ToString());
+                    //client_joined = true;
+                    client_players_amount = 2;
+                    //Debug.Log("Number of Players in Lobby: " + client_players_amount.ToString());
 
                     // Open up a joined canvas for the client
                     GameObject custom_network_manager = GameObject.Find("Game Manager(Clone)");
@@ -958,7 +958,7 @@ public class network_manager : MonoBehaviour
 
                 // Thid updates the buffer and the current player
 
-                server_player_control = received_connection_ID + 1; // Update world based on data from player 2 message
+                server_player_control = 2; // Update world based on data from player 2 message
 
                 break;
         }
