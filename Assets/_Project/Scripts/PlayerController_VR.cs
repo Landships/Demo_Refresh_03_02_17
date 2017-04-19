@@ -77,8 +77,14 @@ public class PlayerController_VR : MonoBehaviour {
         n_manager_script = n_manager.GetComponent<network_manager>();
         current_player = (byte)(n_manager_script.client_players_amount);
         if (owner == current_player) {
-            //left_hand.SetActive(false);
-            //right_hand.SetActive(false);
+            foreach (SkinnedMeshRenderer mesh in left_hand.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
+            foreach (SkinnedMeshRenderer mesh in right_hand.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
         }
 
         left_animator = left_hand.transform.GetChild(0).GetComponent<Animator>();
