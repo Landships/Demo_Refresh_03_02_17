@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class EndScene : MonoBehaviour {
     
@@ -14,6 +15,7 @@ public class EndScene : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
             //Application.LoadLevel("Menu");
+            NetworkTransport.Shutdown();
             SceneManager.LoadScene("Menu");
 		}
 		if (GameObject.Find ("AI_1") == null && GameObject.Find ("AI_2") == null && GameObject.Find ("AI_3") == null && GameObject.Find ("AI_4") == null) {

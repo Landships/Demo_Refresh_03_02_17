@@ -119,7 +119,7 @@ public class network_manager : MonoBehaviour
             client_players_amount = 2;
             spawn_man.spawn_four_players(2);
 
-
+            server_ip = ChangeIp.ipAddress;
             client_setup();
             connect_to_server(ChangeIp.ipAddress);
             Debug.Log(ChangeIp.ipAddress.ToString());
