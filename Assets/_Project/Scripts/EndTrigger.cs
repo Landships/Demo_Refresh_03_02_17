@@ -6,7 +6,7 @@ public class EndTrigger : MonoBehaviour {
     public float waitTime = 3f;
 
     private void Start() {
-        message.text = "Your Mission: Follow the Red Path And Collect the Yellow Ball";
+        //message.text = "Your Mission: Follow the Red Path And Collect the Yellow Ball";
     }
 
     void Update() {
@@ -18,10 +18,11 @@ public class EndTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            message.text = "Mission Completed! Nice Job";
+          
             print("Target reached, starting countdown to scene switch");
             StartCoroutine(switchScenes());
-        
+            // message.text = "Mission Completed! Nice Job";
+
         }
     }
 
