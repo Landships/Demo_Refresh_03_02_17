@@ -15,6 +15,8 @@ public class ChangeScene : MonoBehaviour {
             Application.LoadLevel("DriveTutorial");
         } else if (Input.GetKeyDown("g")) {
             Application.LoadLevel("ShootingTutorial");
+        } else if (Input.GetKeyDown(KeyCode.Space)) {
+            Application.LoadLevel("GameScene");
         }
     }
 
