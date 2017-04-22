@@ -20,7 +20,10 @@ public class spawner_manager : MonoBehaviour
 
     void Start()
     {
-       
+
+        Debug.Log("start is called");
+
+
         camera_rig = GameObject.Find("[CameraRig]");
         left_controller = camera_rig.transform.FindChild("Controller (left)").gameObject;
         right_controller = camera_rig.transform.FindChild("Controller (right)").gameObject;
@@ -31,6 +34,9 @@ public class spawner_manager : MonoBehaviour
         ai_4 = GameObject.Find("AI_4").transform.GetChild(0).GetComponent<Ai_Prep>();
         driver_text = GameObject.Find("DriverText").GetComponent<TextHide>();
         turret_text = GameObject.Find("TurretText").GetComponent<TextHide>();
+
+        Debug.Log("About to get driver spawn");
+
         driver_spawn = GameObject.Find("CorrectDriverPos");
         gunner_spawn = GameObject.Find("GunnerPos");
     }
@@ -38,6 +44,10 @@ public class spawner_manager : MonoBehaviour
 
     public void spawn_four_players(byte num_players)
     {
+
+
+        Start();
+
         GameObject n_manager = GameObject.Find("Custom Network Manager(Clone)");
         network_manager n_manager_script = n_manager.GetComponent<network_manager>();
 
@@ -63,6 +73,11 @@ public class spawner_manager : MonoBehaviour
 
     public void spawn_player(byte number, byte owner)
     {
+
+
+
+        Start();
+
         float x = 0;
         float y = 0;
         float z = 0;
@@ -114,6 +129,11 @@ public class spawner_manager : MonoBehaviour
         network_manager n_manager_script = n_manager.GetComponent<network_manager>();
         //byte current_player = (byte)(n_manager_script.client_players_amount);
 
+        Debug.Log(vr_player);
+        Debug.Log(vr_player.transform);
+        Debug.Log(driver_spawn);
+        driver_spawn = GameObject.Find("CorrectDriverPos");
+        Debug.Log(driver_spawn);
 
         // ADD OWNER TODO!!!!!!!!!!!!!!!!!!
         if (owner == 1)
