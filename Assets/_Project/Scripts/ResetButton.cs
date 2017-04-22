@@ -10,6 +10,7 @@
         Vector3 lowerLim;
         public GameObject leftLever;
         public GameObject rightLever;
+        Vector3 static_pos;
 
         public override void StartUsing(GameObject usingObject)
         {
@@ -23,8 +24,15 @@
         protected override void Start()
         {
             base.Start();
+            static_pos = transform.localPosition;
             upperLim = new Vector3(0, limit, 0);
             lowerLim = new Vector3(0, -limit, 0);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            transform.localPosition = static_pos;
         }
 
         /*protected override void FixedUpdate() {
