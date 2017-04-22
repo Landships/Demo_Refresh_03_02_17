@@ -18,6 +18,9 @@ public class Lever_Controller_VR : MonoBehaviour
     public GameObject left_lever;
     public GameObject right_lever;
 
+    Vector3 left_static_pos;
+    Vector3 right_static_pos;
+
     // Client Queue
     int frame = 0;
 
@@ -55,6 +58,8 @@ public class Lever_Controller_VR : MonoBehaviour
 
     void Start()
     {
+        left_static_pos = left_lever.transform.localPosition;
+        right_static_pos = right_lever.transform.localPosition;
     }
 
     void Update()
@@ -97,7 +102,8 @@ public class Lever_Controller_VR : MonoBehaviour
     {
         if (current_player == designated_player)
         {
-            //
+            left_lever.transform.localPosition = left_static_pos;
+            right_lever.transform.localPosition = right_static_pos;
         }
         else
         {
