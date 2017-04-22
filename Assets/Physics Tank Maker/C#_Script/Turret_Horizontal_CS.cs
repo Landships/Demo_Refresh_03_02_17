@@ -111,6 +111,8 @@ public class Turret_Horizontal_CS : MonoBehaviour
                     break;
             }
         }
+
+        updateHorizontalModelAngle();
     }
 
     void LateUpdate()
@@ -427,7 +429,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
             }
             This_Transform.localRotation = Quaternion.Euler(new Vector3(0.0f, Current_Angle, 0.0f));
 
-            updateHorizontalModelAngle();
+            //updateHorizontalModelAngle();
         }
     }
 
@@ -446,7 +448,7 @@ public class Turret_Horizontal_CS : MonoBehaviour
             }
             This_Transform.localRotation = Quaternion.Euler(new Vector3(0.0f, Current_Angle, 0.0f));
 
-            updateHorizontalModelAngle();
+            //updateHorizontalModelAngle();
         }
     }
 
