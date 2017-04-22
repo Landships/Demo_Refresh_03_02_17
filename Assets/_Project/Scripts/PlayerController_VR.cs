@@ -136,7 +136,7 @@ public class PlayerController_VR : MonoBehaviour {
 
         else {
             left_hand.transform.localPosition = Vector3.Lerp(left_hand.transform.localPosition, new Vector3(left_x, left_y, left_z), 0.1f);
-            right_hand.transform.localPosition = Vector3.Lerp(left_hand.transform.localPosition, new Vector3(right_x, right_y, right_z), 0.1f);
+            right_hand.transform.localPosition = Vector3.Lerp(right_hand.transform.localPosition, new Vector3(right_x, right_y, right_z), 0.1f);
             left_hand.transform.rotation = Quaternion.Lerp(left_hand.transform.rotation, Quaternion.Euler(left_rot_x, left_rot_y, left_rot_z), 0.1f);
             right_hand.transform.rotation = Quaternion.Lerp(right_hand.transform.rotation, Quaternion.Euler(right_rot_x, right_rot_y, right_rot_z), 0.1f);
 
