@@ -1,3 +1,6 @@
+This README is outdated and no longer applies. It will be updated the week of May 15, 2017. 
+
+
 # Landships-Demo
 Setup:
 Designate one player as the driver; they will be the host computer. The other player will be the gunner, who will be a client. After starting the game, each player can position their chair in the Vive play space so that they line up with the chair in the tank. Each player must be running the build on their own computer and Vive headset, though both players can be in the same play space using just one set of light houses. 
